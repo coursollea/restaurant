@@ -48,6 +48,7 @@ create table Contient (
 ID int(11) auto_increment,
 quantite int, 
 idTapas int,
+idChoix_Client int,
 primary key (ID)
 );
 
@@ -81,5 +82,9 @@ add constraint Contient_idTapas
 foreign key (idTapas)
 references Tapas (ID); 
 
+alter table Contient
+add constraint Contient_idChoix_Client
+foreign key (idChoix_Client)
+references Choix_Client (ID); 
  
 
