@@ -2,6 +2,8 @@ package libs;
 
 import java.nio.channels.NetworkChannel;
 
+import changeWindows.VuePrincipale;
+import choixClient.Vue;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -22,8 +24,9 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
     	
-    	Vue vue = new Vue(); 
-    	Scene scene = new Scene(vue, 1000, 400);
+    	VuePrincipale vuePrincipale = new VuePrincipale();
+    	vuePrincipale.changeWindows("choixClient");
+    	Scene scene = new Scene(vuePrincipale, 640, 400);
     	 
         stage.setTitle("Si l'As de Tapas, esta nosotros!!!");
         stage.setScene(scene);
