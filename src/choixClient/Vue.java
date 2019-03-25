@@ -26,9 +26,11 @@ public class Vue extends VBox
 	private final Spinner<Integer> spinner = new Spinner<Integer>(); 
 	private int oldSpinnerValue; 
 	VBox vuePrincipale = new VBox(); 
- 
+	private Modele mdl; 
+	
     public Vue()
     {
+    	mdl = new Modele(); 
     	
         Label label = new Label("Selectionner le nombre de personnes:");
         label.setStyle("-fx-background-color: white"); 
@@ -69,7 +71,10 @@ public class Vue extends VBox
 		        	TextField pseudo = (TextField) hbox.getChildren().get(0); 
 		        	System.out.println(pseudo.getText());
 		        	ColorPicker color = (ColorPicker) hbox.getChildren().get(1); 
-		        	System.out.println(color.getClip());
+		        	String hex1 = Integer.toHexString(color.getValue().hashCode()); 
+		        	System.out.println(hex1);
+		        	// modele
+		        	mdl.addClient(pseudo.getText(), hex1);
 		        }
         
 	        } 
@@ -112,6 +117,5 @@ public class Vue extends VBox
 		panelClient.getChildren().add(newClient); 
     }
     
-
     
 }

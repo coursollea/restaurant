@@ -11,6 +11,7 @@ public class VuePrincipale extends FlowPane
 		{
 			Vue vue = new Vue(); 
 			this.getChildren().add(vue); 
+			
 		}
 		
 	}
