@@ -17,30 +17,45 @@ public class Model {
 	private int nbTapastotal;
 	private View vue;
 	
+	
+	public  Connection connectBDD()
+	{
+		try 
+		{
+			Connection connex = DriverManager.getConnection("jdbc:mysql://localhost:3306/restaurant_tapas", "root", "");
+			
+			return connex; 
+		} 
+		
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		 
+	}
+	
 	public String getNomTapas(int n)
 	{
 		Statement state;
+		Connection connex = connectBDD();
+		ResultSet resultat;
 		try {
-			state = BDD.cobdd().createStatement();
-			ResultSet resultat;
-			try {
-				resultat = state.executeQuery("SELECT nom FROM Tapas WHERE idTapas LIKE " + n);
-				ResultSetMetaData resultMeta = resultat.getMetaData();
-				resultat.next();
-				  
-				return resultat.getObject(1).toString();
-				
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return null;
+			state = connex.createStatement();
+			resultat = state.executeQuery("SELECT nom FROM Tapas WHERE idTapas LIKE " + n);
+			ResultSetMetaData resultMeta = resultat.getMetaData();
+			resultat.next();
+			  
+			return resultat.getObject(1).toString();
+			
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
+		
 	}
 	
 	public int getNbPersonnes() {
@@ -54,8 +69,9 @@ public class Model {
 	{
 		Statement state;
 		int i = 0;
+		Connection connex = connectBDD(); 
 		try {
-			state = BDD.cobdd().createStatement();
+			state = connex.createStatement(); 
 			ResultSet resultat;
 			try {
 				resultat = state.executeQuery("SELECT * FROM Tapas");

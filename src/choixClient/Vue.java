@@ -2,6 +2,7 @@ package choixClient;
 
 
 
+import changeWindows.ChangerWindows;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -19,6 +20,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import libs.View;
 
 public class Vue extends VBox
 {
@@ -27,10 +29,12 @@ public class Vue extends VBox
 	private int oldSpinnerValue; 
 	VBox vuePrincipale = new VBox(); 
 	private Modele mdl; 
+	private View view; 
 	
     public Vue()
     {
-    	mdl = new Modele(); 
+    	mdl = new Modele();
+    	view = new View(); 
     	
         Label label = new Label("Selectionner le nombre de personnes:");
         label.setStyle("-fx-background-color: white"); 
@@ -73,9 +77,13 @@ public class Vue extends VBox
 		        	ColorPicker color = (ColorPicker) hbox.getChildren().get(1); 
 		        	String hex1 = Integer.toHexString(color.getValue().hashCode()); 
 		        	System.out.println(hex1);
-		        	// modele
+		        	// ajouter des clients grâce aux modele!!!
 		        	mdl.addClient(pseudo.getText(), hex1);
+		        	
 		        }
+	        	 
+	        	 System.out.println("iosdjfoz");
+	        	 ChangerWindows.changeWindows("libs");
         
 	        } 
         };  
