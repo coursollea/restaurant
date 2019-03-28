@@ -3,7 +3,7 @@ package libs;
 import java.nio.channels.NetworkChannel;
 
 import changeWindows.ChangerWindows;
-import choixClient.Vue;
+import choixClient.VueCreationPersos;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

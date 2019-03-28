@@ -5,7 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import model.Model;
+import model.ModelChoixTapas;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -16,8 +16,8 @@ public class MainApp extends Application
 	public void start(Stage primaryStage) throws SQLException
 	{
 		
-		View vue = new View();
-		Model mdl = new Model();
+		VueChoixTapas vue = new VueChoixTapas();
+		ModelChoixTapas mdl = new ModelChoixTapas();
 		
 		vue.init(mdl);
 		mdl.init(vue);

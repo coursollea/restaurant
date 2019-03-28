@@ -9,35 +9,17 @@ import java.sql.Statement;
 
 import javafx.scene.control.TextField;
 import libs.Personne;
+import tool.Connexion;
 
-public class Modele
+public class ModelCreationPersos
 {
-	private Connection connex = connectBDD();
 	private int numTable = 1;
-	
-	public Connection connectBDD()
-	{
-		try 
-		{
-			Connection connex = DriverManager.getConnection("jdbc:mysql://localhost:3306/BaseTapas?autoReconnect=true&useSSL=false", "root", "");
-			
-			return connex; 
-		} 
-		
-		catch (SQLException e) 
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-		 
-	}
-	
+
 	public void addClient(String pseudo, String couleur)
 	{
 		Statement state;
 		try {
-			state = connex.createStatement();
+			state = Connexion.connectBDD().createStatement();
 			state.executeUpdate("insert into client(pseudo, couleur, idGroupe) values ('" + pseudo +"','"+ couleur +"','"+ numTable +"')");
 			
 		} catch (SQLException e) 

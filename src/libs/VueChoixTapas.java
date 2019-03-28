@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import choixClient.Vue;
+import choixClient.VueCreationPersos;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,28 +18,31 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import model.Model;
+import model.ModelChoixTapas;
 import libs.GrosModel;
 
-public class View extends ScrollPane {
+public class VueChoixTapas extends ScrollPane {
 	
 	private int j;
-	private Model model;
-	private Vue vu;
+	private ModelChoixTapas modelChoixTapas;
+	private VueCreationPersos vu;
 	private GrosModel gmdl;
-	public void init(Model model)
+	public void init(ModelChoixTapas modelChoixTapas)
 	{
-		this.model = model;
+		this.modelChoixTapas = modelChoixTapas;
 	}
 	
 	public void start()
 	{
 		ArrayList<String> listegens = new ArrayList<String>();
-		for (int k = 0 ; k < GrosModel.getNbPerso() ; k++)
+		for (int k = 1 ; k <= GrosModel.getNbPerso() ; k++)
 		{
-			listegens.add(model.getNomPers(k));
+			System.out.println(GrosModel.getNbPerso());
+			Personne user = new Personne();
+			listegens.add(user.getNomPers(k));
+			System.out.println(user.getNomPers(k));
 		}
-			
+		
 		BorderPane container = new BorderPane();
 		
 		VBox casetapas = new VBox(2);
@@ -50,7 +53,7 @@ public class View extends ScrollPane {
 		cb.setItems(FXCollections.observableArrayList(listegens));
 		
 		Text nbTapasrestant = new Text();
-	    nbTapasrestant.setText("Tapas Restants : " + String.valueOf(model.getNbTapasrestant()));
+	    nbTapasrestant.setText("Tapas Restants : " + String.valueOf(modelChoixTapas.getNbTapasrestant()));
 		
 	    Text erreur = new Text();
 	    erreur.setText("");
@@ -58,7 +61,7 @@ public class View extends ScrollPane {
 	    BorderPane.setMargin(caseinfo, new Insets(20,20,20,20));
 		
 	    
-		for(j = 1 ; j < model.getNbTapastotal() + 1 ; j++)
+		for(j = 1 ; j < modelChoixTapas.getNbTapastotal() + 1 ; j++)
 		{
 			Text ligne = new Text();
 			ligne.setText("__________________________________________");
@@ -66,7 +69,7 @@ public class View extends ScrollPane {
 			HBox tapas = new HBox();
 			
 			Text nomTapas = new Text();
-			nomTapas.setText(model.getNomTapas(j));
+			nomTapas.setText(modelChoixTapas.getNomTapas(j));
 			
 			
 			
@@ -79,8 +82,8 @@ public class View extends ScrollPane {
 	                System.out.println(cb.getValue());
 	                if (cb.getValue() != null)
 	                {
-	                	model.setNbTapasrestant(model.getNbTapasrestant() - 1);
-		                nbTapasrestant.setText("Tapas Restants : " + String.valueOf(model.getNbTapasrestant()));
+	                	modelChoixTapas.setNbTapasrestant(modelChoixTapas.getNbTapasrestant() - 1);
+		                nbTapasrestant.setText("Tapas Restants : " + String.valueOf(modelChoixTapas.getNbTapasrestant()));
 	                }
 	                else
 	                {

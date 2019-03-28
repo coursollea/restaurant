@@ -22,22 +22,24 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import libs.View;
+import libs.VueChoixTapas;
 import libs.GrosModel;
 
-public class Vue extends VBox
+public class VueCreationPersos extends VBox
 {
 	private VBox panelClient; 
 	private final Spinner<Integer> spinner = new Spinner<Integer>(); 
-	private int oldSpinnerValue; 
+	private int oldSpinnerValue;
+	private int newSpinnerValue;
 	VBox vuePrincipale = new VBox(); 
-	private Modele mdl; 
-	private View view; 
+	private ModelCreationPersos mdl; 
+	private VueChoixTapas vueChoixTapas; 
+	private GrosModel gmdl;
 
-	public Vue()
+	public VueCreationPersos()
     {
-    	mdl = new Modele();
-    	view = new View(); 
+    	mdl = new ModelCreationPersos();
+    	vueChoixTapas = new VueChoixTapas(); 
     	
         Label label = new Label("Selectionner le nombre de personnes:");
         label.setStyle("-fx-background-color: white"); 
@@ -50,7 +52,7 @@ public class Vue extends VBox
         spinner.setValueFactory(valueFactory);
         oldSpinnerValue = spinner.getValue();
         
-        GrosModel.setNbPerso(spinner.getValue());
+        newSpinnerValue = spinner.getValue();
         
         spinner.valueProperty().addListener(
         		(obs, oldValue, newValue) -> 
@@ -84,6 +86,7 @@ public class Vue extends VBox
 		        	System.out.println(hex1);
 		        	
 		        	mdl.addClient(pseudo.getText(), hex1);
+		        	GrosModel.setNbPerso(newSpinnerValue);
 		        	
 	        	 }
 	        	 ChangerWindows.changeWindows("libs");
@@ -98,9 +101,6 @@ public class Vue extends VBox
  
     }
    
-    
-    
-    
     
     public void manageClient()
     {

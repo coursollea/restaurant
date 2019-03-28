@@ -1,10 +1,10 @@
 package changeWindows;
 
-import choixClient.Vue;
+import choixClient.VueCreationPersos;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import libs.View;
-import model.Model;
+import libs.VueChoixTapas;
+import model.ModelChoixTapas;
 
 public class ChangerWindows
 {
@@ -19,16 +19,16 @@ public class ChangerWindows
 	{
 		if (nomPage == "choixClient")
 		{
-			Vue vue = new Vue(); 
-			Scene scene = new Scene(vue, 640, 400);
+			VueCreationPersos vueCreationPersos = new VueCreationPersos(); 
+			Scene scene = new Scene(vueCreationPersos, 640, 400);
 			
 			_stage.setScene(scene);
 		}
 		
 		if (nomPage == "libs")
 		{
-			View vue = new View(); 
-			vue.init(new Model());
+			VueChoixTapas vue = new VueChoixTapas(); 
+			vue.init(new ModelChoixTapas());
 			vue.start();
 			Scene scene = new Scene(vue, 640, 400);
 			
