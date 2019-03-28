@@ -77,12 +77,14 @@ public class Vue extends VBox
 		        	ColorPicker color = (ColorPicker) hbox.getChildren().get(1); 
 		        	String hex1 = Integer.toHexString(color.getValue().hashCode()); 
 		        	System.out.println(hex1);
+		        	
 		        	// ajouter des clients grâce aux modele!!!
 		        	mdl.addClient(pseudo.getText(), hex1);
 		        	
 		        }
 	        	 
-	        	 System.out.println("iosdjfoz");
+	        
+	        		
 	        	 ChangerWindows.changeWindows("libs");
         
 	        } 
