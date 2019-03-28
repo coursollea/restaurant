@@ -2,7 +2,9 @@ package libs;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import choixClient.Vue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,13 +19,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import model.Model;
-
+import libs.GrosModel;
 
 public class View extends ScrollPane {
 	
 	private int j;
 	private Model model;
-	
+	private Vue vu;
+	private GrosModel gmdl;
 	public void init(Model model)
 	{
 		this.model = model;
@@ -31,6 +34,12 @@ public class View extends ScrollPane {
 	
 	public void start()
 	{
+		ArrayList<String> listegens = new ArrayList<String>();
+		for (int k = 0 ; k < GrosModel.getNbPerso() ; k++)
+		{
+			listegens.add(model.getNomPers(k));
+		}
+			
 		BorderPane container = new BorderPane();
 		
 		VBox casetapas = new VBox(2);
@@ -38,7 +47,7 @@ public class View extends ScrollPane {
 		VBox caseinfo = new VBox(2);
 		
 		ChoiceBox cb = new ChoiceBox();
-		cb.setItems(FXCollections.observableArrayList("Rouge", "Bleu", "Vert", "Jaune"));
+		cb.setItems(FXCollections.observableArrayList(listegens));
 		
 		Text nbTapasrestant = new Text();
 	    nbTapasrestant.setText("Tapas Restants : " + String.valueOf(model.getNbTapasrestant()));

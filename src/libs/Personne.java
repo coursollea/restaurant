@@ -4,20 +4,32 @@ import model.Model;
 
 public class Personne {
 	
-	private int nbTapasRest = 5;
-	private String couleur;
-	private String pseudo;
+	
+
+	private int _nbTapasRest = 5;
+	private String _couleur;
+	private String _pseudo;
+	private int _idGroupe;
+	
+	public Personne(String _couleur, String _pseudo, int idGroupe) {
+		
+		this._nbTapasRest = _nbTapasRest;
+		this._couleur = _couleur;
+		this._pseudo = _pseudo;
+		this._idGroupe = _idGroupe;
+	}
 	
 	public int getNbTapasRest() {
-		return nbTapasRest;
+		return _nbTapasRest;
 	}
 
 	public void setNbTapasRest(int nbTapasMax) {
-		this.nbTapasRest = nbTapasMax;
+		this._nbTapasRest = nbTapasMax;
 	}
 	
 	public void assign(String couleurPersonne, String pseudoPersonne)
 	{
-		nbTapasRest = 5;
+		_nbTapasRest = 5;
 	}
+	
 }

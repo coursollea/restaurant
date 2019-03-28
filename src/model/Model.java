@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import Tools.BDD;
 import libs.View;
 
 public class Model {
@@ -16,13 +14,14 @@ public class Model {
 	private int nbTapasrestant = 5;
 	private int nbTapastotal;
 	private View vue;
+	private Connection connex = connectBDD();
 	
 	
-	public  Connection connectBDD()
+	public Connection connectBDD()
 	{
 		try 
 		{
-			Connection connex = DriverManager.getConnection("jdbc:mysql://localhost:3306/restaurant_tapas", "root", "");
+			Connection connex = DriverManager.getConnection("jdbc:mysql://localhost:3306/BaseTapas?autoReconnect=true&useSSL=false", "root", "");
 			
 			return connex; 
 		} 
@@ -36,10 +35,33 @@ public class Model {
 		 
 	}
 	
+	public String getNomPers(int n)
+	{
+		Statement state;
+		ResultSet resultat;
+		try {
+			state = connex.createStatement();
+			
+			resultat = state.executeQuery("SELECT pseudo FROM Client WHERE idClient = " + n + " AND idGroupe = " + 1);
+			System.out.println("SELECT pseudo FROM Client WHERE idClient LIKE " + n);
+			
+			ResultSetMetaData resultMeta = resultat.getMetaData();
+			resultat.next();
+			  
+			return String.valueOf(resultat.getObject(0));
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+	
 	public String getNomTapas(int n)
 	{
 		Statement state;
-		Connection connex = connectBDD();
 		ResultSet resultat;
 		try {
 			state = connex.createStatement();
@@ -69,7 +91,6 @@ public class Model {
 	{
 		Statement state;
 		int i = 0;
-		Connection connex = connectBDD(); 
 		try {
 			state = connex.createStatement(); 
 			ResultSet resultat;
