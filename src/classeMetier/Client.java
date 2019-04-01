@@ -1,4 +1,4 @@
-package choixClient;
+package classeMetier;
 
 public class Client
 {
