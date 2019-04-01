@@ -1,6 +1,12 @@
 package libs;
 
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+
+import tool.Connexion;
 
 public class GrosModel {
 	
@@ -12,8 +18,23 @@ public class GrosModel {
 		return listegens;
 	}
 
-	public static ArrayList<String> setListeGens()
+	public static ArrayList<String> setListeGens(int idgrp)
 	{
+		Statement state;
+		ResultSet resultat;
+		try {
+			state = Connexion.connectBDD().createStatement();
+			resultat = state.executeQuery("SELECT * FROM Client WHERE idGroupe LIKE " + idgrp);
+			ResultSetMetaData resultMeta = resultat.getMetaData();
+			resultat.next();
+			System.out.println("Personnage " + resultat.getObject(3).toString() + " " + resultat.getObject(2).toString() + " Créé à la table " + resultat.getObject(4).toString());
+			
+		} catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		for (int k = 1 ; k <= _nbPerso ; k++)
 		{
 			System.out.println(_nbPerso);
@@ -23,6 +44,7 @@ public class GrosModel {
 		}
 		return listegens;
 	}
+	
 	
 	public static int getNumTable() {
 		return _numTable;

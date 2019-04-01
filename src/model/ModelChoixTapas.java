@@ -26,7 +26,7 @@ public class ModelChoixTapas {
 			resultat = state.executeQuery("SELECT nom FROM Tapas WHERE idTapas LIKE " + n);
 			ResultSetMetaData resultMeta = resultat.getMetaData();
 			resultat.next();
-			  
+			
 			return resultat.getObject(1).toString();
 			
 			
