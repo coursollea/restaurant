@@ -9,9 +9,8 @@ import tool.Connexion;
 
 public class ModelCreationPersos
 {
-	private int numTable = 1;
 
-	public void addClient(String pseudo, String couleur)
+	public void addClient(String pseudo, String couleur, int numTable)
 	{
 		Statement state;
 		try {
