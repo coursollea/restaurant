@@ -6,17 +6,16 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Model;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import Tools.BDD;
 
 public class MainApp extends Application
 {
 	public void start(Stage primaryStage) throws SQLException
 	{
+		
 		View vue = new View();
 		Model mdl = new Model();
 		
@@ -36,6 +35,6 @@ public class MainApp extends Application
 	public static void main(String[] args)
 	{
 		Application.launch(MainApp.class);
-		BDD.stop();
+		/*BDD.stop();*/
 	}
 }
