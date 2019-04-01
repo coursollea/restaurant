@@ -43,27 +43,7 @@ public class Personne {
 		this._nbTapasRest = nbTapasMax;
 	}
 	
-	public String getNomPers(int idPersonne)
-	{
-		Statement state;
-		ResultSet resultat;
-		try {
-			state = Connexion.connectBDD().createStatement();
-			
-			resultat = state.executeQuery("SELECT pseudo FROM Client WHERE idClient = " + idPersonne + " AND idGroupe = " + 1);
-			
-			ResultSetMetaData resultMeta = resultat.getMetaData();
-			resultat.next();
-			System.out.println(String.valueOf(resultat.getObject(idPersonne)));
-			
-			return String.valueOf(resultat.getObject(idPersonne));
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
+	
 	
 	public Personne(String _couleur, String _pseudo, int _idGroupe)
 	{
