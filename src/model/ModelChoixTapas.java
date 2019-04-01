@@ -1,70 +1,28 @@
 package model;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+
+
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import libs.View;
 
-public class Model {
+import libs.VueChoixTapas;
+import tool.Connexion;
+
+public class ModelChoixTapas {
 	
 	private int nbPersonnes;
 	private int nbTapasrestant = 5;
 	private int nbTapastotal;
-	private View vue;
-	private Connection connex = connectBDD();
-	
-	
-	public Connection connectBDD()
-	{
-		try 
-		{
-			Connection connex = DriverManager.getConnection("jdbc:mysql://localhost:3306/BaseTapas?autoReconnect=true&useSSL=false", "root", "");
-			
-			return connex; 
-		} 
-		
-		catch (SQLException e) 
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-		 
-	}
-	
-	public String getNomPers(int n)
-	{
-		Statement state;
-		ResultSet resultat;
-		try {
-			state = connex.createStatement();
-			
-			resultat = state.executeQuery("SELECT pseudo FROM Client WHERE idClient = " + n + " AND idGroupe = " + 1);
-			System.out.println("SELECT pseudo FROM Client WHERE idClient LIKE " + n);
-			
-			ResultSetMetaData resultMeta = resultat.getMetaData();
-			resultat.next();
-			  
-			return String.valueOf(resultat.getObject(0));
-			
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-		
-	}
+	private VueChoixTapas vue;
 	
 	public String getNomTapas(int n)
 	{
 		Statement state;
 		ResultSet resultat;
 		try {
-			state = connex.createStatement();
+			state = Connexion.connectBDD().createStatement();
 			resultat = state.executeQuery("SELECT nom FROM Tapas WHERE idTapas LIKE " + n);
 			ResultSetMetaData resultMeta = resultat.getMetaData();
 			resultat.next();
@@ -92,7 +50,7 @@ public class Model {
 		Statement state;
 		int i = 0;
 		try {
-			state = connex.createStatement(); 
+			state = Connexion.connectBDD().createStatement(); 
 			ResultSet resultat;
 			try {
 				resultat = state.executeQuery("SELECT * FROM Tapas");
@@ -123,7 +81,7 @@ public class Model {
 		this.nbTapasrestant = nbTapasrestant;
 	}
 	
-	public void init(View vue)
+	public void init(VueChoixTapas vue)
 	{
 		this.vue = vue;
 	}

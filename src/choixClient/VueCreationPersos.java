@@ -3,41 +3,34 @@ package choixClient;
 
 
 import changeWindows.ChangerWindows;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import libs.View;
+import libs.VueChoixTapas;
 import libs.GrosModel;
 
-public class Vue extends VBox
+public class VueCreationPersos extends VBox
 {
 	private VBox panelClient; 
 	private final Spinner<Integer> spinner = new Spinner<Integer>(); 
-	private int oldSpinnerValue; 
+	private int oldSpinnerValue;
+	private int newSpinnerValue;
 	VBox vuePrincipale = new VBox(); 
-	private Modele mdl; 
-	private View view; 
+	private ModelCreationPersos mdl; 
+	private VueChoixTapas vueChoixTapas; 
+	private GrosModel gmdl;
 
-	public Vue()
+	public VueCreationPersos()
     {
-    	mdl = new Modele();
-    	view = new View(); 
+    	mdl = new ModelCreationPersos();
+    	vueChoixTapas = new VueChoixTapas(); 
     	
         Label label = new Label("Selectionner le nombre de personnes:");
         label.setStyle("-fx-background-color: white"); 
@@ -50,7 +43,7 @@ public class Vue extends VBox
         spinner.setValueFactory(valueFactory);
         oldSpinnerValue = spinner.getValue();
         
-        GrosModel.setNbPerso(spinner.getValue());
+        newSpinnerValue = spinner.getValue();
         
         spinner.valueProperty().addListener(
         		(obs, oldValue, newValue) -> 
@@ -77,11 +70,9 @@ public class Vue extends VBox
 	        	 for (int i = 0; i < panelClient.getChildren().size(); i++ )
 	        	 {
 		        	HBox hbox = (HBox) panelClient.getChildren().get(i); 
-		        	TextField pseudo = (TextField) hbox.getChildren().get(0); 
-		        	System.out.println(pseudo.getText());
+		        	TextField pseudo = (TextField) hbox.getChildren().get(0);
 		        	ColorPicker color = (ColorPicker) hbox.getChildren().get(1); 
-		        	String hex1 = Integer.toHexString(color.getValue().hashCode()); 
-		        	System.out.println(hex1);
+		        	String hex1 = Integer.toHexString(color.getValue().hashCode());
 		        	
 
 		        	// ajouter des clients grâce aux modele!!!
@@ -89,6 +80,7 @@ public class Vue extends VBox
 		        	
 
 		        	mdl.addClient(pseudo.getText(), hex1);
+		        	GrosModel.setNbPerso(newSpinnerValue);
 		        	
 	        	 }
 
@@ -104,9 +96,6 @@ public class Vue extends VBox
  
     }
    
-    
-    
-    
     
     public void manageClient()
     {
