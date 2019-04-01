@@ -1,19 +1,13 @@
 package libs;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.ArrayList;
-
 import choixClient.VueCreationPersos;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Separator;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -34,15 +28,6 @@ public class VueChoixTapas extends ScrollPane {
 	
 	public void start()
 	{
-		ArrayList<String> listegens = new ArrayList<String>();
-		for (int k = 1 ; k <= GrosModel.getNbPerso() ; k++)
-		{
-			System.out.println(GrosModel.getNbPerso());
-			Personne user = new Personne();
-			listegens.add(user.getNomPers(k));
-			System.out.println(user.getNomPers(k));
-		}
-		
 		BorderPane container = new BorderPane();
 		
 		VBox casetapas = new VBox(2);
@@ -50,7 +35,7 @@ public class VueChoixTapas extends ScrollPane {
 		VBox caseinfo = new VBox(2);
 		
 		ChoiceBox cb = new ChoiceBox();
-		cb.setItems(FXCollections.observableArrayList(listegens));
+		cb.setItems(FXCollections.observableArrayList(gmdl.getListegens()));
 		
 		Text nbTapasrestant = new Text();
 	    nbTapasrestant.setText("Tapas Restants : " + String.valueOf(modelChoixTapas.getNbTapasrestant()));

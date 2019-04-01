@@ -6,8 +6,6 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.ModelChoixTapas;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
