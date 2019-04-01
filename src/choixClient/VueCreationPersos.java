@@ -40,9 +40,9 @@ public class VueCreationPersos extends VBox
     	mdl = new ModelCreationPersos();
     	vueChoixTapas = new VueChoixTapas(); 
     	
-        Label label = new Label("   Selectionner le nombre de personnes : ");
+        Label label = new Label("Selectionner le nombre de personnes : ");
         label.setStyle("-fx-background-color: white"); 
-        Label labelTable = new Label("   Selectionner le numero de la table : ");
+        Label labelTable = new Label("Selectionner le numero de la table : ");
         labelTable.setStyle("-fx-background-color: white"); 
         //final Spinner<Integer> spinner = new Spinner<Integer>();
  

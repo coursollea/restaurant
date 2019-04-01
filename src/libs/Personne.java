@@ -27,7 +27,7 @@ public class Personne {
 			ResultSetMetaData resultMeta = resultat.getMetaData();
 			resultat.next();
 			this._idClient = id;
-			this._couleur = (String) resultat.getObject(3);
+			this._couleur = String.valueOf(resultat.getObject(3));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

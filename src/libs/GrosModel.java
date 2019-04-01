@@ -20,30 +20,14 @@ public class GrosModel {
 
 	public static ArrayList<String> setListeGens(int idgrp)
 	{
-		Statement state;
-		ResultSet resultat;
-		try {
-			state = Connexion.connectBDD().createStatement();
-			resultat = state.executeQuery("SELECT * FROM Client WHERE idGroupe LIKE " + idgrp);
-			ResultSetMetaData resultMeta = resultat.getMetaData();
-			for (int k = 1 ; k <= _nbPerso ; k++)
-			{
-				System.out.println(_nbPerso);
-				Personne user = new Personne();
-				
-				listegens.add(resultat.getObject(2).toString());
-				resultat.next();
-				System.out.println("Personnage " + resultat.getObject(3).toString() + " " + resultat.getObject(2).toString() + " Créé à la table " + resultat.getObject(4).toString());
-				
-			}
-			
-		} catch (SQLException e) 
+		for (int k = 1 ; k <= _nbPerso ; k++)
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
+			System.out.println(_nbPerso);
+			Personne user = new Personne();
+			user.fillPersonne(k);
+			
+			
+		}		
 		return listegens;
 	}
 	
