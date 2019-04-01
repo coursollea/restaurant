@@ -26,8 +26,16 @@ public class GrosModel {
 			state = Connexion.connectBDD().createStatement();
 			resultat = state.executeQuery("SELECT * FROM Client WHERE idGroupe LIKE " + idgrp);
 			ResultSetMetaData resultMeta = resultat.getMetaData();
-			resultat.next();
-			System.out.println("Personnage " + resultat.getObject(3).toString() + " " + resultat.getObject(2).toString() + " Créé à la table " + resultat.getObject(4).toString());
+			for (int k = 1 ; k <= _nbPerso ; k++)
+			{
+				System.out.println(_nbPerso);
+				Personne user = new Personne();
+				
+				listegens.add(resultat.getObject(2).toString());
+				resultat.next();
+				System.out.println("Personnage " + resultat.getObject(3).toString() + " " + resultat.getObject(2).toString() + " Créé à la table " + resultat.getObject(4).toString());
+				
+			}
 			
 		} catch (SQLException e) 
 		{
@@ -35,13 +43,7 @@ public class GrosModel {
 			e.printStackTrace();
 		}
 		
-		for (int k = 1 ; k <= _nbPerso ; k++)
-		{
-			System.out.println(_nbPerso);
-			Personne user = new Personne();
-			listegens.add(user.getNomPers(k));
-			System.out.println(user.getNomPers(k));
-		}
+		
 		return listegens;
 	}
 	
