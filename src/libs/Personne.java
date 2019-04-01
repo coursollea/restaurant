@@ -18,8 +18,22 @@ public class Personne {
 	
 	public void fillPersonne(int id)
 	{
-		
+		Statement state;
+		ResultSet resultat;
+		try {
+			state = Connexion.connectBDD().createStatement();
+			
+			resultat = state.executeQuery("SELECT * FROM Client WHERE idClient LIKE " + id);
+			ResultSetMetaData resultMeta = resultat.getMetaData();
+			resultat.next();
+			this._idClient = id;
+			this._couleur = (String) resultat.getObject(3);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
+		
 	
 	public int getNbTapasRest() {
 		return _nbTapasRest;
@@ -51,12 +65,12 @@ public class Personne {
 		return null;
 	}
 	
-	public Personne(int _idClient, String _couleur, String _pseudo, int _idGroupe)
+	public Personne(String _couleur, String _pseudo, int _idGroupe)
 	{
-		this._idClient = _idClient;
 		this._nbTapasRest = 5;
 		this._couleur = _couleur;
 		this._pseudo = _pseudo;
 		this._idGroupe = _idGroupe;
 	}
+
 }
