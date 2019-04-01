@@ -100,9 +100,8 @@ public class VueCreationPersos extends VBox
 		        	
 	        	 }
 	        	 
-	        	 
 	        	 GrosModel.setNbPerso(newSpinnerValue);
-	        	 
+	        	 gmdl.setListeGens(newTableSpinnerValue);
 	        	 
 	        	 ChangerWindows.changeWindows("libs");
 
