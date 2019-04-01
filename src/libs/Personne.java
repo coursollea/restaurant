@@ -49,9 +49,8 @@ public class Personne {
 		return null;
 	}
 	
-	public void setInfosPers(int idPersonne, String couleur, String pseudo, int idGroupe)
+	public void setInfosPers(String couleur, String pseudo, int idGroupe)
 	{
-		idClient = idPersonne;
 		_nbTapasRest = 5;
 		_couleur = couleur;
 		_pseudo = pseudo;

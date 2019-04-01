@@ -75,6 +75,7 @@ public class VueCreationPersos extends VBox
 		        	String hex1 = Integer.toHexString(color.getValue().hashCode());
 		        	
 		        	mdl.addClient(pseudo.getText(), hex1);
+		        	
 		        	GrosModel.setNbPerso(newSpinnerValue);
 		        	
 	        	 }
