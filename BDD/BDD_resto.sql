@@ -2,19 +2,19 @@ CREATE DATABASE BaseTapas;
 
 USE BaseTapas;
 
+create table Groupe (
+	idGroupe int(11) NOT NULL auto_increment, 
+	numeroTable int(11),
+	idCommande int(11),
+	primary key (idGroupe)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 create table Client (
 	idClient int(11) NOT NULL auto_increment,
 	pseudo varchar(64), 
 	couleur varchar(64),
 	idGroupe int(11), 
 	primary key (idClient)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-create table Groupe (
-	idGroupe int(11) NOT NULL auto_increment, 
-	numeroTable int(11),
-	idCommande int(11),
-	primary key (idGroupe)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 create table Commande (
@@ -59,10 +59,32 @@ foreign key (idCategorie)
 references Categorie (idCategorie);
 
 INSERT INTO Commande (dateCommande) VALUES
+("2018-07-26"),
+("2018-07-26"),
+("2018-07-26"),
+("2018-07-26"),
+("2018-07-26"),
+("2018-07-26"),
+("2018-07-26"),
+("2018-07-26"),
+("2018-07-26"),
+("2018-07-26"),
+("2018-07-26"),
 ("2018-07-26");
 
 INSERT INTO Groupe (numeroTable, idCommande) VALUES
-(1,1);
+(1,1),
+(2,2),
+(3,3),
+(4,4),
+(5,5),
+(6,6),
+(7,7),
+(8,8),
+(9,9),
+(10,10),
+(11,11),
+(12,12);
 
 INSERT INTO Client (pseudo, couleur, idGroupe) VALUES
 ("Eglantine","jaune",1),

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class GrosModel {
 	
 	private static int _nbPerso;
+	private static int _numTable;
 	private static ArrayList<String> listegens;
 	
 	public static ArrayList<String> getListegens() {
@@ -23,6 +24,14 @@ public class GrosModel {
 		return listegens;
 	}
 	
+	public static int getNumTable() {
+		return _numTable;
+	}
+
+	public static void setNumTable(int numTable) {
+		_numTable = numTable;
+	}
+
 	public static int getNbPerso() {
 		return _nbPerso;
 	}

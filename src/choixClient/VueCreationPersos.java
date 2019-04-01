@@ -19,30 +19,47 @@ import libs.GrosModel;
 public class VueCreationPersos extends VBox
 {
 	private VBox panelClient; 
-	private final Spinner<Integer> spinner = new Spinner<Integer>(); 
+	private Spinner<Integer> spinner = new Spinner<Integer>(); 
+	private Spinner<Integer> spinnerTable = new Spinner<Integer>();
+	
 	private int oldSpinnerValue;
 	private int newSpinnerValue;
+	
+	private int oldTableSpinnerValue;
+	private int newTableSpinnerValue;
+	
 	VBox vuePrincipale = new VBox(); 
 	private ModelCreationPersos mdl; 
 	private VueChoixTapas vueChoixTapas; 
 	private GrosModel gmdl;
-
+	private int initialValue = 1;
+	
+    
 	public VueCreationPersos()
     {
     	mdl = new ModelCreationPersos();
     	vueChoixTapas = new VueChoixTapas(); 
     	
-        Label label = new Label("Selectionner le nombre de personnes:");
+        Label label = new Label("   Selectionner le nombre de personnes : ");
         label.setStyle("-fx-background-color: white"); 
+        Label labelTable = new Label("   Selectionner le numero de la table : ");
+        labelTable.setStyle("-fx-background-color: white"); 
         //final Spinner<Integer> spinner = new Spinner<Integer>();
  
         final int initialValue = 1;
  
         // Value factory.
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 4, initialValue);
-        spinner.setValueFactory(valueFactory);
-        oldSpinnerValue = spinner.getValue();
+
+        SpinnerValueFactory<Integer> valueFactoryTable = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 50, initialValue);
         
+        spinner.setValueFactory(valueFactory);
+        spinnerTable.setValueFactory(valueFactoryTable);
+        
+        oldTableSpinnerValue = spinner.getValue();
+        newTableSpinnerValue = spinner.getValue();
+        
+        oldSpinnerValue = spinner.getValue();
         newSpinnerValue = spinner.getValue();
         
         spinner.valueProperty().addListener(
@@ -50,6 +67,8 @@ public class VueCreationPersos extends VBox
         		manageClient());
         this.getChildren().add(label); 
         this.getChildren().add(spinner);
+        this.getChildren().add(labelTable); 
+        this.getChildren().add(spinnerTable);
  
         
         panelClient = new VBox(); 
@@ -66,7 +85,10 @@ public class VueCreationPersos extends VBox
         {
 	        @Override 
 	        public void handle(MouseEvent e)
-	        { 
+	        {
+	        	newTableSpinnerValue = spinnerTable.getValue();
+	        	GrosModel.setNumTable(newTableSpinnerValue);
+	        	
 	        	 for (int i = 0; i < panelClient.getChildren().size(); i++ )
 	        	 {
 		        	HBox hbox = (HBox) panelClient.getChildren().get(i); 
@@ -74,19 +96,17 @@ public class VueCreationPersos extends VBox
 		        	ColorPicker color = (ColorPicker) hbox.getChildren().get(1); 
 		        	String hex1 = Integer.toHexString(color.getValue().hashCode());
 		        	
-
-		        	// ajouter des clients grâce aux modele!!!
-		        	mdl.addClient(pseudo.getText(), hex1);
-		        	
-
-		        	mdl.addClient(pseudo.getText(), hex1);
-		        	
-		        	GrosModel.setNbPerso(newSpinnerValue);
+		        	mdl.addClient(pseudo.getText(), hex1, newTableSpinnerValue);
 		        	
 	        	 }
-
+	        	 
+	        	 
+	        	 GrosModel.setNbPerso(newSpinnerValue);
+	        	 
+	        	 
 	        	 ChangerWindows.changeWindows("libs");
-        
+
+		        	
 	        } 
         }; 
         
@@ -112,7 +132,6 @@ public class VueCreationPersos extends VBox
     	}
     	
     	oldSpinnerValue = newValue;
-    	
     }
     
     private void addBox() 
@@ -120,16 +139,9 @@ public class VueCreationPersos extends VBox
     	HBox newClient = new HBox(); 
 		TextField pseudoClient = new TextField(); 
 		ColorPicker color = new ColorPicker();
-		final Spinner<Integer> spinner = new Spinner<Integer>();
-		final int initialValue = 1;
-		 
-        // Value factory.
-        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 50, initialValue);
-        spinner.setValueFactory(valueFactory);
-        oldSpinnerValue = spinner.getValue();
+
 		newClient.getChildren().add(pseudoClient); 
-		newClient.getChildren().add(color); 
-		newClient.getChildren().add(spinner);
+		newClient.getChildren().add(color);
 		panelClient.getChildren().add(newClient); 
     }
     
