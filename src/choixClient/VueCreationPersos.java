@@ -74,11 +74,17 @@ public class VueCreationPersos extends VBox
 		        	ColorPicker color = (ColorPicker) hbox.getChildren().get(1); 
 		        	String hex1 = Integer.toHexString(color.getValue().hashCode());
 		        	
+
+		        	// ajouter des clients grâce aux modele!!!
+		        	mdl.addClient(pseudo.getText(), hex1);
+		        	
+
 		        	mdl.addClient(pseudo.getText(), hex1);
 		        	
 		        	GrosModel.setNbPerso(newSpinnerValue);
 		        	
 	        	 }
+
 	        	 ChangerWindows.changeWindows("libs");
         
 	        } 
@@ -113,9 +119,17 @@ public class VueCreationPersos extends VBox
     {
     	HBox newClient = new HBox(); 
 		TextField pseudoClient = new TextField(); 
-		ColorPicker color = new ColorPicker();  
+		ColorPicker color = new ColorPicker();
+		final Spinner<Integer> spinner = new Spinner<Integer>();
+		final int initialValue = 1;
+		 
+        // Value factory.
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 50, initialValue);
+        spinner.setValueFactory(valueFactory);
+        oldSpinnerValue = spinner.getValue();
 		newClient.getChildren().add(pseudoClient); 
 		newClient.getChildren().add(color); 
+		newClient.getChildren().add(spinner);
 		panelClient.getChildren().add(newClient); 
     }
     

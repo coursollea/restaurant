@@ -1,0 +1,11 @@
+un package par page
+-> une vue (affichage)
+-> un modèle (données)
+
+main -> créer le stage (fenêtre javaFX)
+
+switcher de fenêtres (classe contenant des méthodes static qui permettent de changer de fenêtre en fonction d'un nom)
+
+gestionnaire de session (contient les personnes de la table et leurs commandes, permet de communiquer les données entre les pages)
+
+classes métiers représentent les tables de la BDD (contient les requêtes SQL)
