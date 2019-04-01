@@ -17,7 +17,7 @@ public class ModelCreationPersos
 		try {
 			state = Connexion.connectBDD().createStatement();
 			state.executeUpdate("insert into client(pseudo, couleur, idGroupe) values ('" + pseudo +"','"+ couleur +"','"+ numTable +"')");
-			System.out.println(" Personnage " + couleur + pseudo + " Créé à la table " + numTable);
+			System.out.println("Personnage " + couleur + " " + pseudo + " Créé à la table " + numTable);
 		} catch (SQLException e) 
 		{
 			// TODO Auto-generated catch block

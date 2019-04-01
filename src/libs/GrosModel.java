@@ -17,6 +17,7 @@ public class GrosModel {
 		{
 			System.out.println(_nbPerso);
 			Personne user = new Personne();
+			setInfosPers();
 			listegens.add(user.getNomPers(k));
 			System.out.println(user.getNomPers(k));
 		}

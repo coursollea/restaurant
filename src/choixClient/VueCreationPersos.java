@@ -3,25 +3,16 @@ package choixClient;
 
 
 import changeWindows.ChangerWindows;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import libs.VueChoixTapas;
 import libs.GrosModel;
 
@@ -79,11 +70,9 @@ public class VueCreationPersos extends VBox
 	        	 for (int i = 0; i < panelClient.getChildren().size(); i++ )
 	        	 {
 		        	HBox hbox = (HBox) panelClient.getChildren().get(i); 
-		        	TextField pseudo = (TextField) hbox.getChildren().get(0); 
-		        	System.out.println(pseudo.getText());
+		        	TextField pseudo = (TextField) hbox.getChildren().get(0);
 		        	ColorPicker color = (ColorPicker) hbox.getChildren().get(1); 
-		        	String hex1 = Integer.toHexString(color.getValue().hashCode()); 
-		        	System.out.println(hex1);
+		        	String hex1 = Integer.toHexString(color.getValue().hashCode());
 		        	
 		        	mdl.addClient(pseudo.getText(), hex1);
 		        	GrosModel.setNbPerso(newSpinnerValue);

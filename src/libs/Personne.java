@@ -15,17 +15,7 @@ public class Personne {
 	private String _couleur;
 	private String _pseudo;
 	private int _idGroupe;
-	private String _nomPers;
 	
-	/*
-	public Personne(String _couleur, String _pseudo, int idGroupe) {
-		
-		this._nbTapasRest = _nbTapasRest;
-		this._couleur = _couleur;
-		this._pseudo = _pseudo;
-		this._idGroupe = _idGroupe;
-	}
-	*/
 	
 	public int getNbTapasRest() {
 		return _nbTapasRest;
@@ -33,11 +23,6 @@ public class Personne {
 
 	public void setNbTapasRest(int nbTapasMax) {
 		this._nbTapasRest = nbTapasMax;
-	}
-	
-	public void assign(String couleurPersonne, String pseudoPersonne)
-	{
-		_nbTapasRest = 5;
 	}
 	
 	public String getNomPers(int idPersonne)
@@ -49,14 +34,13 @@ public class Personne {
 			
 			resultat = state.executeQuery("SELECT pseudo FROM Client WHERE idClient = " + idPersonne + " AND idGroupe = " + 1);
 			System.out.println("Requète : ");
-			System.out.println("SELECT pseudo FROM Client WHERE idClient LIKE " + idPersonne+ " AND idGroupe = " + 1);
+			System.out.println("SELECT pseudo FROM Client WHERE idClient LIKE " + idPersonne + " AND idGroupe = " + 1);
 			
 			ResultSetMetaData resultMeta = resultat.getMetaData();
 			resultat.next();
 			System.out.println(String.valueOf(resultat.getObject(idPersonne)));
 			
 			return String.valueOf(resultat.getObject(idPersonne));
-			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -65,5 +49,12 @@ public class Personne {
 		return null;
 	}
 	
-	
+	public void setInfosPers(int idPersonne, String couleur, String pseudo, int idGroupe)
+	{
+		idClient = idPersonne;
+		_nbTapasRest = 5;
+		_couleur = couleur;
+		_pseudo = pseudo;
+		_idGroupe = idGroupe;
+	}
 }
