@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import tool.Connexion;
+import tool.DataBaseManager;
 
 public class GrosModel {
 	
@@ -23,13 +23,13 @@ public class GrosModel {
 		Statement state;
 		ResultSet resultat;
 		try {
-			state = Connexion.connectBDD().createStatement();
+			state = DataBaseManager.connectBDD().createStatement();
 			resultat = state.executeQuery("SELECT * FROM Client WHERE idGroupe LIKE " + idgrp);
 			ResultSetMetaData resultMeta = resultat.getMetaData();
 			for (int k = 1 ; k <= _nbPerso ; k++)
 			{
 				System.out.println(_nbPerso);
-				Personne user = new Personne();
+				//Personne user = new Personne();
 				
 				listegens.add(resultat.getObject(2).toString());
 				resultat.next();

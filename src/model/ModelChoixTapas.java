@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import libs.VueChoixTapas;
-import tool.Connexion;
+import tool.DataBaseManager;
 
 public class ModelChoixTapas {
 	
@@ -22,7 +22,7 @@ public class ModelChoixTapas {
 		Statement state;
 		ResultSet resultat;
 		try {
-			state = Connexion.connectBDD().createStatement();
+			state = DataBaseManager.connectBDD().createStatement();
 			resultat = state.executeQuery("SELECT nom FROM Tapas WHERE idTapas LIKE " + n);
 			ResultSetMetaData resultMeta = resultat.getMetaData();
 			resultat.next();
@@ -50,7 +50,7 @@ public class ModelChoixTapas {
 		Statement state;
 		int i = 0;
 		try {
-			state = Connexion.connectBDD().createStatement(); 
+			state = DataBaseManager.connectBDD().createStatement(); 
 			ResultSet resultat;
 			try {
 				resultat = state.executeQuery("SELECT * FROM Tapas");

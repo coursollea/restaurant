@@ -5,7 +5,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import tool.Connexion;
+import tool.DataBaseManager;
 
 public class Personne {
 	
@@ -21,7 +21,7 @@ public class Personne {
 		Statement state;
 		ResultSet resultat;
 		try {
-			state = Connexion.connectBDD().createStatement();
+			state = DataBaseManager.connectBDD().createStatement();
 			
 			resultat = state.executeQuery("SELECT * FROM Client WHERE idClient LIKE " + id);
 			ResultSetMetaData resultMeta = resultat.getMetaData();
@@ -35,7 +35,7 @@ public class Personne {
 	}
 		
 	
-	public int getNbTapasRest() {
+	public int getNbTapasRest() { 
 		return _nbTapasRest;
 	}
 

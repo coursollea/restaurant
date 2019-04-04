@@ -7,7 +7,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import tool.Connexion;
+import tool.DataBaseManager;
 
 public class ModelCreationPersos
 {
@@ -17,7 +17,7 @@ public class ModelCreationPersos
 		Statement state;
 		ResultSet resultat;
 		try {
-			state = Connexion.connectBDD().createStatement();
+			state = DataBaseManager.connectBDD().createStatement();
 			state.executeUpdate("insert into groupe(numeroTable) values ('" + numTable +"')"); 
 			state.executeUpdate("insert into client(pseudo, couleur, idGroupe) values ('" + pseudo +"','"+ couleur +"','"+ numTable +"')");
 			
