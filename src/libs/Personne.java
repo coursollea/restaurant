@@ -9,7 +9,6 @@ import tool.Connexion;
 
 public class Personne {
 	
-	
 	private int _idClient;
 	private int _nbTapasRest = 5;
 	private String _couleur;
@@ -33,6 +32,21 @@ public class Personne {
 			e.printStackTrace();
 		}
 	}
+	
+	public void savePersonne()
+	{
+		Statement state;
+		int resultat;
+		try {
+			state = Connexion.connectBDD().createStatement();
+			
+			resultat = state.executeUpdate("insert into client(pseudo, couleur, idGroupe) values ('" + _pseudo +"','"+ _couleur +"','"+ _idGroupe +"')");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 		
 	
 	public int getNbTapasRest() {
@@ -45,8 +59,9 @@ public class Personne {
 	
 	
 	
-	public Personne(String _couleur, String _pseudo, int _idGroupe)
+	public Personne(int idClient, String _couleur, String _pseudo, int _idGroupe)
 	{
+		this._idClient = idClient;
 		this._nbTapasRest = 5;
 		this._couleur = _couleur;
 		this._pseudo = _pseudo;

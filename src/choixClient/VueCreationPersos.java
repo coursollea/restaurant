@@ -96,12 +96,10 @@ public class VueCreationPersos extends VBox
 		        	ColorPicker color = (ColorPicker) hbox.getChildren().get(1); 
 		        	String hex1 = Integer.toHexString(color.getValue().hashCode());
 		        	
-		        	mdl.addClient(pseudo.getText(), hex1, newTableSpinnerValue);
-		        	
+		        	mdl.addClient(i, pseudo.getText(), hex1, newTableSpinnerValue);		        	
 	        	 }
 	        	 
 	        	 GrosModel.setNbPerso(newSpinnerValue);
-	        	 gmdl.setListeGens(newTableSpinnerValue);
 	        	 
 	        	 ChangerWindows.changeWindows("libs");
 
@@ -136,7 +134,7 @@ public class VueCreationPersos extends VBox
     private void addBox() 
     {
     	HBox newClient = new HBox(); 
-		TextField pseudoClient = new TextField(); 
+		TextField pseudoClient = new TextField();
 		ColorPicker color = new ColorPicker();
 
 		newClient.getChildren().add(pseudoClient); 

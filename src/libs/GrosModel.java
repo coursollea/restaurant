@@ -12,25 +12,16 @@ public class GrosModel {
 	
 	private static int _nbPerso;
 	private static int _numTable;
-	private static ArrayList<String> listegens;
+	private static ArrayList<Personne> listegens = new ArrayList<Personne>();
 	
-	public static ArrayList<String> getListegens() {
+	public static ArrayList<Personne> getListegens() {
 		return listegens;
 	}
-
-	public static ArrayList<String> setListeGens(int idgrp)
+	
+	public static void addPersonne(Personne perso)
 	{
-		for (int k = 1 ; k <= _nbPerso ; k++)
-		{
-			System.out.println(_nbPerso);
-			Personne user = new Personne();
-			user.fillPersonne(k);
-			
-			
-		}		
-		return listegens;
+		listegens.add(perso);
 	}
-	
 	
 	public static int getNumTable() {
 		return _numTable;
