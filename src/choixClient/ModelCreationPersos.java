@@ -13,12 +13,11 @@ import tool.Connexion;
 
 public class ModelCreationPersos
 {
-	private Personne pers;
+
 	public void addClient(int idClient, String pseudo, String couleur, int numTable)
 	{
 		Personne client = new Personne(idClient, couleur, pseudo, numTable);
-		pers.fillPersonne(idClient);
-		pers.savePersonne();
+		client.savePersonne();
 		GrosModel.addPersonne(client);
 	}
 	

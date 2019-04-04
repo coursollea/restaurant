@@ -89,21 +89,18 @@ public class VueCreationPersos extends VBox
 	        	newTableSpinnerValue = spinnerTable.getValue();
 	        	GrosModel.setNumTable(newTableSpinnerValue);
 	        	
-	        	 for (int i = 0; i < panelClient.getChildren().size(); i++ )
-	        	 {
-		        	HBox hbox = (HBox) panelClient.getChildren().get(i); 
+	        	for (int i = 0; i < panelClient.getChildren().size(); i++ )
+	        	{
+	        		HBox hbox = (HBox) panelClient.getChildren().get(i); 
 		        	TextField pseudo = (TextField) hbox.getChildren().get(0);
 		        	ColorPicker color = (ColorPicker) hbox.getChildren().get(1); 
 		        	String hex1 = Integer.toHexString(color.getValue().hashCode());
 		        	
-		        	mdl.addClient(i, pseudo.getText(), hex1, newTableSpinnerValue);		        	
-	        	 }
+		        	mdl.addClient(i, pseudo.getText(), hex1, newTableSpinnerValue);
+	        	}
 	        	 
 	        	 GrosModel.setNbPerso(newSpinnerValue);
-	        	 
 	        	 ChangerWindows.changeWindows("libs");
-
-		        	
 	        } 
         }; 
         
