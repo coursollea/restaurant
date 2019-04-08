@@ -18,9 +18,11 @@ import libs.GrosModel;
 public class VueChoixTapas extends ScrollPane {
 	
 	private int j;
+	private Personne actuel;
 	private ModelChoixTapas modelChoixTapas;
 	private VueCreationPersos vu;
 	private GrosModel gmdl;
+	
 	public void init(ModelChoixTapas modelChoixTapas)
 	{
 		this.modelChoixTapas = modelChoixTapas;
@@ -56,8 +58,6 @@ public class VueChoixTapas extends ScrollPane {
 			Text nomTapas = new Text();
 			nomTapas.setText(modelChoixTapas.getNomTapas(j));
 			
-			
-			
 			Button butt = new Button();
 			butt.setText(String.valueOf(j));
 			butt.setOnAction(new EventHandler<ActionEvent>() 
@@ -67,8 +67,12 @@ public class VueChoixTapas extends ScrollPane {
 	                System.out.println(cb.getValue());
 	                if (cb.getValue() != null)
 	                {
-	                	modelChoixTapas.setNbTapasrestant(modelChoixTapas.getNbTapasrestant() - 1);
-		                nbTapasrestant.setText("Tapas Restants : " + String.valueOf(modelChoixTapas.getNbTapasrestant()));
+	                	Personne current = (Personne) cb.getValue();
+	                	System.out.println(current.getNbTapasRest());
+	                	
+	                	current.setNbTapasRest(current.getNbTapasRest() - 1);
+		                nbTapasrestant.setText("Tapas Restants : " + String.valueOf(current.getNbTapasRest()));
+		                
 	                }
 	                else
 	                {

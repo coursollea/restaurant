@@ -7,6 +7,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import libs.GrosModel;
 import libs.VueChoixTapas;
 import tool.DataBaseManager;
 
@@ -77,10 +78,6 @@ public class ModelChoixTapas {
 		return nbTapasrestant;
 	}
 
-	public void setNbTapasrestant(int nbTapasrestant) {
-		this.nbTapasrestant = nbTapasrestant;
-	}
-	
 	public void init(VueChoixTapas vue)
 	{
 		this.vue = vue;
