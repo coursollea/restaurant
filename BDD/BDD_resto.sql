@@ -5,7 +5,6 @@ USE BaseTapas;
 create table Groupe (
 	idGroupe int(11) NOT NULL auto_increment, 
 	numeroTable int(11),
-	idCommande int(11),
 	primary key (idGroupe)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -18,9 +17,17 @@ create table Client (
 	primary key (idClient)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+create table Choix_Client (
+	idChoix int(11) NOT NULL auto_increment,
+	idTapas int(11),
+	idClient int(11),
+	idCommande int(11),
+	primary key(idChoix)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 create table Commande (
 	idCommande int(11) NOT NULL auto_increment,
-	dateCommande date, 
+	dateCommande date,
 	primary key (idCommande)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -34,7 +41,6 @@ create table Tapas (
 	idTapas int(11) NOT NULL auto_increment,
 	nom varchar(64),
 	couleur VARCHAR(64),
-	idCommande int(11),
 	idCategorie int(11),
 	primary key (idTapas)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -44,20 +50,26 @@ add constraint Client_idGroupe
 foreign key (idGroupe)
 references Groupe (idGroupe);
 
-alter table Groupe
-add constraint Groupe_idCommande
-foreign key (idCommande)
-references Commande (idCommande);
-
-alter table Tapas
-add constraint Tapas_idCommande
-foreign key (idCommande)
-references Commande (idCommande);
-
 alter table Tapas
 add constraint Tapas_idCategorie
 foreign key (idCategorie)
 references Categorie (idCategorie);
+
+alter table Choix_Client
+add constraint Choix_Client_idTapas
+foreign key (idTapas)
+references Tapas (idTapas);
+
+alter table Choix_Client
+add constraint Choix_Client_idCommande
+foreign key (idCommande)
+references Commande (idCommande);
+
+alter table Choix_Client
+add constraint Choix_Client_idClient
+foreign key (idClient)
+references Client (idClient);
+
 
 INSERT INTO Commande (dateCommande) VALUES
 ("2018-07-26"),
@@ -73,25 +85,31 @@ INSERT INTO Commande (dateCommande) VALUES
 ("2018-07-26"),
 ("2018-07-26");
 
-INSERT INTO Groupe (numeroTable, idCommande) VALUES
-(1,1),
-(2,2),
-(3,3),
-(4,4),
-(5,5),
-(6,6),
-(7,7),
-(8,8),
-(9,9),
-(10,10),
-(11,11),
-(12,12);
-
-INSERT INTO Client (idcligrp, pseudo, couleur, idGroupe) VALUES
-(1, "Eglantine", "jaune", 1),
-(2, "Geraud", "vert", 1),
-(3, "Gedeon", "bleu", 1),
-(4, "Norbert", "rouge", 1);
+INSERT INTO Groupe (numeroTable) VALUES
+(1),
+(2),
+(3),
+(4),
+(5),
+(6),
+(7),
+(8),
+(9),
+(10),
+(11),
+(12),
+(13),
+(14),
+(15),
+(16),
+(17),
+(18),
+(19),
+(20),
+(21),
+(22),
+(23),
+(24);
 
 INSERT INTO Categorie (libelle) VALUES
 ("Poulettito"),
@@ -101,12 +119,12 @@ INSERT INTO Categorie (libelle) VALUES
 ("Viande Humaine"),
 ("Vegan");
 
-INSERT INTO Tapas (nom, couleur, idCommande, idCategorie) VALUES
-("Eau de Source","",1,2),
-("Aile avec Plumes","",1,1),
-("Ongles sous marins","",1,2),
-("Flammes très chaudes","",1,4),
-("Cornes de vachon","",1,3),
-("Griffes qui griffent","",1,4),
-("Doigt de iep","",1,5),
-("Champignon non toxique","",1,6);
+INSERT INTO Tapas (nom, couleur, idCategorie) VALUES
+("Eau de Source","",2),
+("Aile avec Plumes","",1),
+("Ongles sous marins","",2),
+("Flammes très chaudes","",4),
+("Cornes de vachon","",3),
+("Griffes qui griffent","",4),
+("Doigt de iep","",5),
+("Champignon non toxique","",6);

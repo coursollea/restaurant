@@ -9,7 +9,7 @@ import java.sql.Statement;
 
 import libs.GrosModel;
 import libs.Personne;
-import tool.Connexion;
+import tool.DataBaseManager;
 
 public class ModelCreationPersos
 {

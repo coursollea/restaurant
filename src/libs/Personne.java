@@ -5,7 +5,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import tool.Connexion;
+import tool.DataBaseManager;
 
 public class Personne {
 	
@@ -20,7 +20,7 @@ public class Personne {
 		Statement state;
 		int resultat;
 		try {
-			state = Connexion.connectBDD().createStatement();
+			state = DataBaseManager.connectBDD().createStatement();
 			resultat = state.executeUpdate("insert into client(idcligrp, pseudo, couleur, idGroupe) values ('" + _idClient +"','" + _pseudo +"','"+ _couleur +"','"+ _idGroupe +"')");
 			
 		} catch (SQLException e) {
