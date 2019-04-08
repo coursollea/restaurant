@@ -24,7 +24,7 @@ public class ModelCreationPersos
 		try {
 			state = DataBaseManager.connectBDD().createStatement();
 			state.executeUpdate("insert into groupe(numeroTable) values ('" + numTable +"')"); 
-			state.executeUpdate("insert into client(pseudo, couleur, idGroupe) values ('" + pseudo +"','"+ couleur +"','"+ numTable +"')");
+			state.executeUpdate("insert into client(idcligrp, pseudo, couleur, idGroupe) values ('" + idClient +"','" + pseudo +"','"+ couleur +"','"+ numTable +"')");
 			
 		} catch (SQLException e) 
 		{

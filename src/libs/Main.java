@@ -10,9 +10,6 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
     	
- 
-    	Categorie legume = new Categorie(); 
-    	legume.fillCategorie(1);
     	ChangerWindows.setStage(stage);
     	ChangerWindows.changeWindows("choixClient");
  
