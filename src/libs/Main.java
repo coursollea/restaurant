@@ -1,6 +1,7 @@
 package libs;
 
 import changeWindows.ChangerWindows;
+import classeMetier.Categorie;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -10,6 +11,8 @@ public class Main extends Application {
     public void start(Stage stage) {
     	
  
+    	Categorie legume = new Categorie(); 
+    	legume.fillCategorie(1);
     	ChangerWindows.setStage(stage);
     	ChangerWindows.changeWindows("choixClient");
  

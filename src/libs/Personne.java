@@ -1,5 +1,6 @@
 package libs;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -20,9 +21,10 @@ public class Personne {
 		Statement state;
 		int resultat;
 		try {
+
 			state = DataBaseManager.connectBDD().createStatement();
 			resultat = state.executeUpdate("insert into client(idcligrp, pseudo, couleur, idGroupe) values ('" + _idClient +"','" + _pseudo +"','"+ _couleur +"','"+ _idGroupe +"')");
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -33,7 +35,7 @@ public class Personne {
 		return _pseudo;
 	}
 	
-	public int getNbTapasRest() {
+	public int getNbTapasRest() { 
 		return _nbTapasRest;
 	}
 
