@@ -40,9 +40,9 @@ public class VueCreationPersos extends VBox
     	mdl = new ModelCreationPersos();
     	vueChoixTapas = new VueChoixTapas(); 
     	
-        Label label = new Label("   Selectionner le nombre de personnes : ");
+        Label label = new Label("Selectionner le nombre de personnes : ");
         label.setStyle("-fx-background-color: white"); 
-        Label labelTable = new Label("   Selectionner le numero de la table : ");
+        Label labelTable = new Label("Selectionner le numero de la table : ");
         labelTable.setStyle("-fx-background-color: white"); 
         //final Spinner<Integer> spinner = new Spinner<Integer>();
  
@@ -89,23 +89,18 @@ public class VueCreationPersos extends VBox
 	        	newTableSpinnerValue = spinnerTable.getValue();
 	        	GrosModel.setNumTable(newTableSpinnerValue);
 	        	
-	        	 for (int i = 0; i < panelClient.getChildren().size(); i++ )
-	        	 {
-		        	HBox hbox = (HBox) panelClient.getChildren().get(i); 
+	        	for (int i = 0; i < panelClient.getChildren().size(); i++ )
+	        	{
+	        		HBox hbox = (HBox) panelClient.getChildren().get(i); 
 		        	TextField pseudo = (TextField) hbox.getChildren().get(0);
 		        	ColorPicker color = (ColorPicker) hbox.getChildren().get(1); 
 		        	String hex1 = Integer.toHexString(color.getValue().hashCode());
 		        	
-		        	mdl.addClient(pseudo.getText(), hex1, newTableSpinnerValue);
-		        	
-	        	 }
+		        	mdl.addClient(i, pseudo.getText(), hex1, newTableSpinnerValue);
+	        	}
 	        	 
 	        	 GrosModel.setNbPerso(newSpinnerValue);
-	        	 gmdl.setListeGens(newTableSpinnerValue);
-	        	 
 	        	 ChangerWindows.changeWindows("libs");
-
-		        	
 	        } 
         }; 
         
@@ -136,7 +131,7 @@ public class VueCreationPersos extends VBox
     private void addBox() 
     {
     	HBox newClient = new HBox(); 
-		TextField pseudoClient = new TextField(); 
+		TextField pseudoClient = new TextField();
 		ColorPicker color = new ColorPicker();
 
 		newClient.getChildren().add(pseudoClient); 

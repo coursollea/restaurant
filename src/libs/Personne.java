@@ -1,5 +1,6 @@
 package libs;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -9,31 +10,31 @@ import tool.DataBaseManager;
 
 public class Personne {
 	
-	
 	private int _idClient;
 	private int _nbTapasRest = 5;
 	private String _couleur;
 	private String _pseudo;
 	private int _idGroupe;
 	
-	public void fillPersonne(int id)
+	public void savePersonne()
 	{
 		Statement state;
-		ResultSet resultat;
+		int resultat;
 		try {
+
 			state = DataBaseManager.connectBDD().createStatement();
-			
-			resultat = state.executeQuery("SELECT * FROM Client WHERE idClient LIKE " + id);
-			ResultSetMetaData resultMeta = resultat.getMetaData();
-			resultat.next();
-			this._idClient = id;
-			this._couleur = (String) resultat.getObject(3);
+			state = Connection.connectBDD().createStatement();
+			resultat = state.executeUpdate("insert into client(idclient, pseudo, couleur, idGroupe) values ('" + _idClient +"','" + _pseudo +"','"+ _couleur +"','"+ _idGroupe +"')");
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-		
+	public String toString()
+	{
+		return _pseudo;
+	}
 	
 	public int getNbTapasRest() { 
 		return _nbTapasRest;
@@ -43,10 +44,9 @@ public class Personne {
 		this._nbTapasRest = nbTapasMax;
 	}
 	
-	
-	
-	public Personne(String _couleur, String _pseudo, int _idGroupe)
+	public Personne(int idClient, String _couleur, String _pseudo, int _idGroupe)
 	{
+		this._idClient = idClient;
 		this._nbTapasRest = 5;
 		this._couleur = _couleur;
 		this._pseudo = _pseudo;

@@ -11,6 +11,7 @@ create table Groupe (
 
 create table Client (
 	idClient int(11) NOT NULL auto_increment,
+	idcligrp int(11) NOT NULL,
 	pseudo varchar(64), 
 	couleur varchar(64),
 	idGroupe int(11), 
@@ -86,11 +87,11 @@ INSERT INTO Groupe (numeroTable, idCommande) VALUES
 (11,11),
 (12,12);
 
-INSERT INTO Client (pseudo, couleur, idGroupe) VALUES
-("Eglantine","jaune",1),
-("Geraud","vert",1),
-("Gedeon","bleu",1),
-("Norbert","rouge",1);
+INSERT INTO Client (idcligrp, pseudo, couleur, idGroupe) VALUES
+(1, "Eglantine", "jaune", 1),
+(2, "Geraud", "vert", 1),
+(3, "Gedeon", "bleu", 1),
+(4, "Norbert", "rouge", 1);
 
 INSERT INTO Categorie (libelle) VALUES
 ("Poulettito"),

@@ -12,41 +12,16 @@ public class GrosModel {
 	
 	private static int _nbPerso;
 	private static int _numTable;
-	private static ArrayList<String> listegens;
+	private static ArrayList<Personne> listegens = new ArrayList<Personne>();
 	
-	public static ArrayList<String> getListegens() {
+	public static ArrayList<Personne> getListegens() {
 		return listegens;
 	}
-
-	public static ArrayList<String> setListeGens(int idgrp)
+	
+	public static void addPersonne(Personne perso)
 	{
-		Statement state;
-		ResultSet resultat;
-		try {
-			state = DataBaseManager.connectBDD().createStatement();
-			resultat = state.executeQuery("SELECT * FROM Client WHERE idGroupe LIKE " + idgrp);
-			ResultSetMetaData resultMeta = resultat.getMetaData();
-			for (int k = 1 ; k <= _nbPerso ; k++)
-			{
-				System.out.println(_nbPerso);
-				//Personne user = new Personne();
-				
-				listegens.add(resultat.getObject(2).toString());
-				resultat.next();
-				System.out.println("Personnage " + resultat.getObject(3).toString() + " " + resultat.getObject(2).toString() + " Créé à la table " + resultat.getObject(4).toString());
-				
-			}
-			
-		} catch (SQLException e) 
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		return listegens;
+		listegens.add(perso);
 	}
-	
 	
 	public static int getNumTable() {
 		return _numTable;
