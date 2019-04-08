@@ -15,7 +15,7 @@ public class Connexion {
 	{
 		try 
 		{
-			Connection connex = DriverManager.getConnection("jdbc:mysql://localhost:3306/BaseTapas?autoReconnect=true&useSSL=false", "root", "");
+			Connection connex = DriverManager.getConnection("jdbc:mysql://localhost:3306/BaseTapas?autoReconnect=true&useSSL=false", "root", "root");
 			
 			return connex; 
 		} 

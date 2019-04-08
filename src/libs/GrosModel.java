@@ -18,6 +18,11 @@ public class GrosModel {
 		return listegens;
 	}
 	
+	public static Personne getPersonneById(int idCli)
+	{
+		return listegens.get(idCli);
+	}
+	
 	public static void addPersonne(Personne perso)
 	{
 		listegens.add(perso);
