@@ -97,7 +97,7 @@ public class VueCreationPersos extends VBox
 	        	newTableSpinnerValue = spinnerTable.getValue();
 	        	GrosModel.setNumTable(newTableSpinnerValue);
 	        	
-	        	for (int i = 0; i < panelClient.getChildren().size(); i++ )
+	        	for (int i = 1; i < panelClient.getChildren().size()+1; i++ )
 	        	{
 	        		HBox hbox = (HBox) panelClient.getChildren().get(i); 
 		        	TextField pseudo = (TextField) hbox.getChildren().get(0);
