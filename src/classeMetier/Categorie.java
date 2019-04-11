@@ -37,7 +37,7 @@ public class Categorie
 		Statement state;
 		try {
 			state = bdd.createStatement();
-			result = state.executeQuery("Select*From Categorie Where Categorie.ID = " + ID); // récupérer les infos de la table Categorie correspondant à l'id en paramètre
+			result = state.executeQuery("Select * From Categorie Where Categorie.ID = " + ID); // récupérer les infos de la table Categorie correspondant à l'id en paramètre
 			
 			ResultSetMetaData resultMeta = result.getMetaData();
 			result.next();
@@ -55,17 +55,23 @@ public class Categorie
 	public void saveCategorie()
 	{
 		DataBaseManager connex = new DataBaseManager(); // se co à la bdd
+		ResultSet result;
 		Connection bdd = connex.connectBDD(); 
 		Statement state;
+		int idCate;
 		try {
 			state = bdd.createStatement();
-			if (ID == 0)
+			result = state.executeQuery("Select * From Categorie");
+			result.next();
+
+			idCate = Integer.valueOf((String) result.getObject(1));
+			if (idCate == ID)
 			{
-				state.executeUpdate("insert into Categorie(nom) values(" + nom + ")"); 
+				state.executeUpdate("Update Categorie SET libelle = " + nom + "");
 			}
 			else
 			{
-				state.executeUpdate("Update Categorie SET nom = " + nom + ""); 
+				state.executeUpdate("insert into Categorie(libelle) values(" + nom + ")");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

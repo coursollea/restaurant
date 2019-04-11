@@ -23,8 +23,12 @@ public class Personne {
 		try {
 
 			state = DataBaseManager.connectBDD().createStatement();
+<<<<<<< HEAD
 
 			resultat = state.executeUpdate("insert into client(idclient, pseudo, couleur, idGroupe) values ('" + _idClient +"','" + _pseudo +"','"+ _couleur +"','"+ _idGroupe +"')");
+=======
+			resultat = state.executeUpdate("insert into client(idcligrp, pseudo, couleur, idGroupe) values ('" + _idClient +"','" + _pseudo +"','"+ _couleur +"','"+ _idGroupe +"')");
+>>>>>>> refs/remotes/origin/master
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
