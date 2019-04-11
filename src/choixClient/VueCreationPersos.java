@@ -13,6 +13,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import libs.VueChoixTapas;
 import libs.GrosModel;
 
@@ -86,6 +88,11 @@ public class VueCreationPersos extends VBox
 	        @Override 
 	        public void handle(MouseEvent e)
 	        {
+	        	Color red = Color.RED; 
+	        	Color blue = Color.BLUE; 
+	        	Color yellow = Color.YELLOW; 
+	        	Color green = Color.GREEN; 
+	        	
 	        	newTableSpinnerValue = spinnerTable.getValue();
 	        	GrosModel.setNumTable(newTableSpinnerValue);
 	        	
@@ -93,10 +100,26 @@ public class VueCreationPersos extends VBox
 	        	{
 	        		HBox hbox = (HBox) panelClient.getChildren().get(i); 
 		        	TextField pseudo = (TextField) hbox.getChildren().get(0);
-		        	ColorPicker color = (ColorPicker) hbox.getChildren().get(1); 
-		        	String hex1 = Integer.toHexString(color.getValue().hashCode());
+		        	String hex = new String(); 
+		        	if (i == 0)
+		        	{
+		        		hex = "#" + Integer.toHexString(Color.RED.hashCode());
+		        	}
+		        	else if (i == 1)
+		        	{
+		        		hex = "#" + Integer.toHexString(Color.BLUE.hashCode());
+		        	}
+		        	else if (i == 2)
+		        	{
+		        		hex = "#" + Integer.toHexString(Color.YELLOW.hashCode());
+		        	}
+		        	else if (i == 3)
+		        	{
+		        		hex = "#" + Integer.toHexString(Color.GREEN.hashCode());
+		        	}
 		        	
-		        	mdl.addClient(i, pseudo.getText(), hex1, newTableSpinnerValue);
+		        	
+		        	//mdl.addClient(i, pseudo.getText(), hex, newTableSpinnerValue);
 	        	}
 	        	 
 	        	 GrosModel.setNbPerso(newSpinnerValue);
@@ -132,12 +155,28 @@ public class VueCreationPersos extends VBox
     {
     	HBox newClient = new HBox(); 
 		TextField pseudoClient = new TextField();
-		ColorPicker color = new ColorPicker();
-
+		Rectangle color = new Rectangle();
+		color.setHeight(25); 
+		color.setWidth(25);
+		switch (spinner.getValue())
+		{
+			case 1:
+				color.setFill(Color.RED);
+				break;
+			case 2:
+				color.setFill(Color.BLUE);
+				break;
+			case 3:
+				color.setFill(Color.YELLOW);
+				break;
+			case 4:
+				color.setFill(Color.GREEN);
+				break;
+		}
 		newClient.getChildren().add(pseudoClient); 
 		newClient.getChildren().add(color);
 		panelClient.getChildren().add(newClient); 
     }
     
-    
+     
 }

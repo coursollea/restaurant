@@ -23,7 +23,7 @@ public class Personne {
 		try {
 
 			state = DataBaseManager.connectBDD().createStatement();
-			state = Connection.connectBDD().createStatement();
+
 			resultat = state.executeUpdate("insert into client(idclient, pseudo, couleur, idGroupe) values ('" + _idClient +"','" + _pseudo +"','"+ _couleur +"','"+ _idGroupe +"')");
 
 		} catch (SQLException e) {

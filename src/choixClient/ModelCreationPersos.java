@@ -7,13 +7,13 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-<<<<<<< HEAD
+
 import tool.DataBaseManager;
-=======
+
 import libs.GrosModel;
 import libs.Personne;
-import tool.Connexion;
->>>>>>> 5d045960e6b30667d84f7432d1e817f046a1f461
+
+
 
 public class ModelCreationPersos
 {
