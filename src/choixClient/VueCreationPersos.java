@@ -17,6 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import libs.VueChoixTapas;
 import libs.GrosModel;
+import libs.Personne;
 
 public class VueCreationPersos extends VBox
 {
@@ -119,7 +120,7 @@ public class VueCreationPersos extends VBox
 		        	}
 		        	
 		        	
-		        	//mdl.addClient(i, pseudo.getText(), hex, newTableSpinnerValue);
+		        	mdl.addClient(i, pseudo.getText(), hex, newTableSpinnerValue);
 	        	}
 	        	 
 	        	 GrosModel.setNbPerso(newSpinnerValue);
