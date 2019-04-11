@@ -10,7 +10,7 @@ create table Groupe (
 
 create table Client (
 	idClient int(11) NOT NULL auto_increment,
-	idcligrp int(11) NOT NULL,
+	idClientGroupe int(11) NOT NULL,
 	pseudo varchar(64), 
 	couleur varchar(64),
 	idGroupe int(11), 

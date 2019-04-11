@@ -30,7 +30,6 @@ public class ModelChoixTapas {
 			
 			return resultat.getObject(1).toString();
 			
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
