@@ -19,11 +19,10 @@ public class Personne {
 	public void savePersonne()
 	{
 		Statement state;
-		int resultat;
 		try {
 
 			state = DataBaseManager.connectBDD().createStatement();
-			resultat = state.executeUpdate("insert into client(idcligrp, pseudo, couleur, idGroupe) values ('" + _idClient +"','" + _pseudo +"','"+ _couleur +"','"+ _idGroupe +"')");
+			state.executeUpdate("insert into client(idClientGroupe, pseudo, couleur, idGroupe) values ('" + _idClient +"','" + _pseudo +"','"+ _couleur +"','"+ _idGroupe +"')");
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
