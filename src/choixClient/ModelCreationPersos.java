@@ -7,9 +7,17 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+<<<<<<< HEAD
+
+import tool.DataBaseManager;
+
+import libs.GrosModel;
+import libs.Personne;
+=======
 import libs.GrosModel;
 import libs.Personne;
 import tool.DataBaseManager;
+>>>>>>> refs/remotes/origin/master
 
 
 
