@@ -49,14 +49,13 @@ public class Choix_Client {
 		ResultSet result;
 		Connection bdd = connex.connectBDD(); 
 		Statement state;
-		int idChoix;
 		try {
 			state = bdd.createStatement();
 			result = state.executeQuery("Select * From Choix_Client");
 			result.next();
 
-			idChoix = Integer.valueOf((String) result.getObject(1));
-			if (idChoix == idchoix)
+			
+			if (result.getObject(1) != null)
 			{
 				state.executeUpdate("Update Choix_Client SET idCommande = '" + idcommande + "' , idClient = '" + idclient + "' idTapas = '" + idtapas + "' WHERE idChoix LIKE '" + idchoix);
 			}

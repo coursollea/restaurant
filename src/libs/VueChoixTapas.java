@@ -48,7 +48,6 @@ public class VueChoixTapas extends ScrollPane {
 	    
 	    BorderPane.setMargin(caseinfo, new Insets(20,20,20,20));
 		
-	    
 		for(j = 1 ; j < modelChoixTapas.getNbTapastotal() + 1 ; j++)
 		{
 			Text ligne = new Text();
