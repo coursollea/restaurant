@@ -1,6 +1,7 @@
 package libs;
 
 import choixClient.VueCreationPersos;
+import classeMetier.Choix_Client;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -72,7 +73,8 @@ public class VueChoixTapas extends ScrollPane {
 	                	
 	                	current.setNbTapasRest(current.getNbTapasRest() - 1);
 		                nbTapasrestant.setText("Tapas Restants : " + String.valueOf(current.getNbTapasRest()));
-		                
+		                Choix_Client.fillChoix(j, j, j, j);
+		                Choix_Client.saveChoix();
 	                }
 	                else
 	                {

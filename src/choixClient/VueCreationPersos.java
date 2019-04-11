@@ -17,6 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import libs.VueChoixTapas;
 import libs.GrosModel;
+import libs.Personne;
 
 public class VueCreationPersos extends VBox
 {

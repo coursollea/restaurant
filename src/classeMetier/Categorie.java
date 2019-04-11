@@ -67,7 +67,7 @@ public class Categorie
 			idCate = Integer.valueOf((String) result.getObject(1));
 			if (idCate == ID)
 			{
-				state.executeUpdate("Update Categorie SET libelle = " + nom + "");
+				state.executeUpdate("Update Categorie SET libelle = '" + nom + "' WHERE idCategorie LIKE '" + ID);
 			}
 			else
 			{
@@ -76,9 +76,7 @@ public class Categorie
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}// co
-		// si l'id = 0 insert les valeurs des attributs dans les champs de la table
-		// sinon update
+		}
 		
 	}
 	
