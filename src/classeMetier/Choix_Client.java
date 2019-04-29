@@ -15,7 +15,13 @@ public class Choix_Client {
 	private static int idclient;
 	private static int idtapas;
 	
-	public static void fillChoix(int idChoix, int idCommande, int Client, int Tapas)
+	public Choix_Client(int idCommande, int idClient, int idTapas) {
+		idcommande = idCommande;
+		idclient = idClient;
+		idtapas = idTapas;
+	}
+	
+	public static void fillChoix(int idChoix)
 	{
 		ResultSet result; 
 		DataBaseManager connex = new DataBaseManager();
@@ -28,9 +34,9 @@ public class Choix_Client {
 			ResultSetMetaData resultMeta = result.getMetaData();
 			result.next();
 
-			int tapas = Integer.valueOf((String) result.getObject(2));
-			int client = Integer.valueOf((String) result.getObject(3));
-			int commande = Integer.valueOf((String) result.getObject(4));
+			int tapas = result.getInt("idTapas");
+			int client = result.getInt("idClient");
+			int commande = result.getInt("idCommande");
 			
 			idtapas = tapas;
 			idclient = client;

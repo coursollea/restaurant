@@ -1,5 +1,6 @@
 package choixClient;
 
+import classeMetier.GroupeTable;
 import libs.GrosModel;
 import libs.Personne;
 
@@ -12,6 +13,11 @@ public class ModelCreationPersos
 		client.savePersonne();
 		GrosModel.addPersonne(client);
 
+	}
+	
+	public void creerGrp(int numeroTable)
+	{
+		GroupeTable.fillChoix(GroupeTable.saveChoix(numeroTable));
 	}
 	
 }

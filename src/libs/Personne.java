@@ -11,6 +11,22 @@ import tool.DataBaseManager;
 public class Personne {
 	
 	private int _idClient;
+	public int get_idClient() {
+		return _idClient;
+	}
+
+	public void set_idClient(int _idClient) {
+		this._idClient = _idClient;
+	}
+
+	public String get_pseudo() {
+		return _pseudo;
+	}
+
+	public void set_pseudo(String _pseudo) {
+		this._pseudo = _pseudo;
+	}
+
 	private int _nbTapasRest = 5;
 	private String _couleur;
 	private String _pseudo;
@@ -19,17 +35,17 @@ public class Personne {
 	public void savePersonne()
 	{
 		Statement state;
-		int resultat;
 		try {
 
 			state = DataBaseManager.connectBDD().createStatement();
-			resultat = state.executeUpdate("insert into client(idcligrp, pseudo, couleur, idGroupe) values ('" + _idClient +"','" + _pseudo +"','"+ _couleur +"','"+ _idGroupe +"')");
+			state.executeUpdate("insert into client(idClientGroupe, pseudo, couleur, idGroupe) values ('" + _idClient +"','" + _pseudo +"','"+ _couleur +"','"+ _idGroupe +"')");
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
 	public String toString()
 	{
 		return _pseudo;
