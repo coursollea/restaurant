@@ -11,6 +11,22 @@ import tool.DataBaseManager;
 public class Personne {
 	
 	private int _idClient;
+	public int get_idClient() {
+		return _idClient;
+	}
+
+	public void set_idClient(int _idClient) {
+		this._idClient = _idClient;
+	}
+
+	public String get_pseudo() {
+		return _pseudo;
+	}
+
+	public void set_pseudo(String _pseudo) {
+		this._pseudo = _pseudo;
+	}
+
 	private int _nbTapasRest = 5;
 	private String _couleur;
 	private String _pseudo;
@@ -29,6 +45,7 @@ public class Personne {
 			e.printStackTrace();
 		}
 	}
+	
 	public String toString()
 	{
 		return _pseudo;

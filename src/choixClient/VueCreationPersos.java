@@ -3,6 +3,7 @@ package choixClient;
 
 
 import changeWindows.ChangerWindows;
+import classeMetier.GroupeTable;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -39,6 +40,8 @@ public class VueCreationPersos extends VBox
 	private VueChoixTapas vueChoixTapas; 
 	private GrosModel gmdl;
 	private int initialValue = 1;
+	
+	private int groupverif = 0;
 	
     
 	public VueCreationPersos()
@@ -137,7 +140,11 @@ public class VueCreationPersos extends VBox
 		        		hex = "#" + Integer.toHexString(Color.GREEN.hashCode());
 		        	}
 		        	
-		        	
+		        	if(groupverif == 0)
+		        	{
+		        		mdl.creerGrp(newTableSpinnerValue);
+		        		groupverif = 1;
+		        	}
 		        	mdl.addClient(i, pseudo.getText(), hex, newTableSpinnerValue);
 	        	}
 	        	 

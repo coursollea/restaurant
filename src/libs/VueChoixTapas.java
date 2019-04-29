@@ -72,8 +72,11 @@ public class VueChoixTapas extends ScrollPane {
 	                	
 	                	current.setNbTapasRest(current.getNbTapasRest() - 1);
 		                nbTapasrestant.setText("Tapas Restants : " + String.valueOf(current.getNbTapasRest()));
-		                Choix_Client.fillChoix(j, j, j, j);
-		                Choix_Client.saveChoix();
+		                //Choix_Client choixcli = new Choix_Client(, current.get_idClient(), );
+		                //Choix_Client.fillChoix(j);
+		                //Choix_Client.saveChoix();
+		                
+		                
 	                }
 	                else
 	                {

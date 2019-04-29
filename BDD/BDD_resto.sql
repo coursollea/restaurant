@@ -13,7 +13,7 @@ create table Client (
 	idClientGroupe int(11) NOT NULL,
 	pseudo varchar(64), 
 	couleur varchar(64),
-	idGroupe int(11), 
+	idGroupe int(11),
 	primary key (idClient)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
