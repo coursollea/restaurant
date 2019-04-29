@@ -13,20 +13,6 @@ public class Categorie
 {
 	private int ID;
 	private String nom;
-
-	
-	public int getID() {
-		return ID;
-	}
-	public void setID(int iD) {
-		ID = iD;
-	}
-	public String getNom() {
-		return nom;
-	}
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
 	
 	public void fillCategorie(int ID)
 	{
@@ -78,6 +64,19 @@ public class Categorie
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public int getID() {
+		return ID;
+	}
+	public void setID(int iD) {
+		ID = iD;
+	}
+	public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 	
 }

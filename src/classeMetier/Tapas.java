@@ -14,7 +14,7 @@ public class Tapas
 	private int ID;
 	private String nom;
 	
-	public void fillCategorie(int ID)
+	public void fillTapas(int ID)
 	{
 		
 		ResultSet result; 
@@ -38,7 +38,7 @@ public class Tapas
 		
 	}
 	
-	public void saveCategorie()
+	public void saveTapas()
 	{
 		DataBaseManager connex = new DataBaseManager(); // se co à la bdd
 		ResultSet result;
