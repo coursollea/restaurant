@@ -2,6 +2,7 @@ package libs;
 
 import choixClient.VueCreationPersos;
 import classeMetier.Choix_Client;
+import classeMetier.Commande;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -48,6 +49,9 @@ public class VueChoixTapas extends ScrollPane {
 	    
 	    BorderPane.setMargin(caseinfo, new Insets(20,20,20,20));
 		
+	    Commande.setDateCommande();
+	    Commande.saveCategorie();
+	    
 		for(j = 1 ; j < modelChoixTapas.getNbTapastotal() + 1 ; j++)
 		{
 			Text ligne = new Text();
@@ -72,10 +76,10 @@ public class VueChoixTapas extends ScrollPane {
 	                	
 	                	current.setNbTapasRest(current.getNbTapasRest() - 1);
 		                nbTapasrestant.setText("Tapas Restants : " + String.valueOf(current.getNbTapasRest()));
-		                //Choix_Client choixcli = new Choix_Client(, current.get_idClient(), );
-		                //Choix_Client.fillChoix(j);
-		                //Choix_Client.saveChoix();
 		                
+		                Choix_Client choixcli = new Choix_Client(Commande.getID(), current.get_idClient(), Integer.valueOf(butt.getText()));
+		                Choix_Client.fillChoix(j);
+		                Choix_Client.saveChoix();
 		                
 	                }
 	                else

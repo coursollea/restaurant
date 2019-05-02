@@ -1,22 +1,21 @@
 package classeMetier;
 
 import java.sql.Connection;
-import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+import java.util.Calendar;
 
 import tool.DataBaseManager;
 
 public class Commande 
 {
 
-	private int ID; 
-	private Date dateCommande;
-	
+	private static int ID; 
+	private static String dateCommande;
 	
 	public void fillCommande(int ID)
 	{
@@ -32,12 +31,7 @@ public class Commande
 			ResultSetMetaData resultMeta = result.getMetaData();
 			result.next();
 
-			try {
-				dateCommande = new SimpleDateFormat("dd/MM/yyyy").parse(result.getObject(2).toString());
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			this.dateCommande = result.getObject(2).toString();
 			this.ID = ID; 
 
 		} catch (SQLException e) {
@@ -47,9 +41,9 @@ public class Commande
 		
 	}
 	
-	public void saveCategorie()
+	public static void saveCategorie()
 	{
-		DataBaseManager connex = new DataBaseManager(); // se co à la bdd
+		DataBaseManager connex = new DataBaseManager();
 		ResultSet result;
 		Connection bdd = connex.connectBDD(); 
 		Statement state;
@@ -59,7 +53,7 @@ public class Commande
 			result = state.executeQuery("Select * From Commande");
 			result.next();
 
-			idComm = Integer.valueOf((String) result.getObject(1));
+			idComm = result.getInt("idCommande");
 			
 			if (idComm == ID)
 			{
@@ -67,7 +61,7 @@ public class Commande
 			}
 			else
 			{
-				this.ID = state.executeUpdate("insert into Commande(dateCommande) values(" + dateCommande + ")", Statement.RETURN_GENERATED_KEYS);
+				ID = state.executeUpdate("insert into Commande(dateCommande) values('" + dateCommande + "')", Statement.RETURN_GENERATED_KEYS);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -76,20 +70,31 @@ public class Commande
 		
 	}
 	
-	public int getID() 
+	public static int getID() 
 	{
 		return ID;
 	}
+	
 	public void setID(int iD)
 	{
 		ID = iD;
 	}
-	public Date getDateCommande() 
+	
+	public String getDateCommande() 
 	{
 		return dateCommande;
 	}
-	public void setDateCommande(Date dateCommande) 
+	
+	public static void setDateCommande() 
 	{
-		this.dateCommande = dateCommande;
+		dateCommande = GetCurrentDateTime();
+	}
+
+	private static String GetCurrentDateTime()
+	{
+	    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	    Calendar cal = Calendar.getInstance();
+	    String la_date = dateFormat.format(cal.getTime());
+		return la_date;
 	}
 }
