@@ -5,6 +5,8 @@ package choixClient;
 import changeWindows.ChangerWindows;
 import classeMetier.GroupeTable;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
@@ -22,9 +24,10 @@ import libs.Personne;
 
 public class VueCreationPersos extends VBox
 {
-	private VBox panelClient; 
+	private VBox panelClient;
 	private Spinner<Integer> spinner = new Spinner<Integer>(); 
 	private Spinner<Integer> spinnerTable = new Spinner<Integer>();
+	private VBox container;
 	
 	private int oldSpinnerValue;
 	private int newSpinnerValue;
@@ -43,15 +46,25 @@ public class VueCreationPersos extends VBox
     
 	public VueCreationPersos()
     {
+		this.setStyle("-fx-background-image: url(\"image/tapas.jpg\")");
+		this.setAlignment(Pos.CENTER);
+		
     	mdl = new ModelCreationPersos();
     	vueChoixTapas = new VueChoixTapas(); 
     	
+    	container = new VBox();
+    	container.setMaxSize(230, 150);
+    	container.setStyle("-fx-background-color: #FFF");
+    	container.setAlignment(Pos.CENTER);
+    	
+    	
         Label label = new Label("Selectionner le nombre de personnes : ");
-        label.setStyle("-fx-background-color: white"); 
+        label.setTextFill(Color.RED);
+        VBox.setMargin(label, new Insets (5));
         Label labelTable = new Label("Selectionner le numero de la table : ");
-        labelTable.setStyle("-fx-background-color: white"); 
+        labelTable.setStyle("-fx-color: blue"); 
         //final Spinner<Integer> spinner = new Spinner<Integer>();
- 
+        VBox.setMargin(labelTable, new Insets(5));
         final int initialValue = 1;
  
         // Value factory.
@@ -71,20 +84,22 @@ public class VueCreationPersos extends VBox
         spinner.valueProperty().addListener(
         		(obs, oldValue, newValue) -> 
         		manageClient());
-        this.getChildren().add(label); 
-        this.getChildren().add(spinner);
-        this.getChildren().add(labelTable); 
-        this.getChildren().add(spinnerTable);
+        container.getChildren().add(label); 
+        container.getChildren().add(spinner);
+        container.getChildren().add(labelTable); 
+        container.getChildren().add(spinnerTable);
  
         
         panelClient = new VBox(); 
-        this.getChildren().add(panelClient); 
+        panelClient.setAlignment(Pos.CENTER);
+        panelClient.setSpacing(10);
+        container.getChildren().add(panelClient); 
         //change la dimension de la page
-        this.setPrefSize(640, 400);
+        container.setPrefSize(640, 400);
         
         addBox();
         //changer l'arrière plan de la fenêtre de javafx
-        this.setStyle("-fx-background-image: url(\"image/tapas.jpg\")");
+        
         
         Button button = new Button("Valider"); 
         EventHandler<MouseEvent> monEvent = new EventHandler<MouseEvent>()
@@ -102,7 +117,10 @@ public class VueCreationPersos extends VBox
 	        	
 	        	for (int i = 0; i < panelClient.getChildren().size(); i++ )
 	        	{
+	        		
 	        		HBox hbox = (HBox) panelClient.getChildren().get(i); 
+	        		hbox.setPadding(new Insets(15, 12, 15, 12));
+	        	    
 		        	TextField pseudo = (TextField) hbox.getChildren().get(0);
 		        	String hex = new String(); 
 		        	if (i == 0)
@@ -136,9 +154,11 @@ public class VueCreationPersos extends VBox
         }; 
         
         button.addEventHandler(MouseEvent.MOUSE_CLICKED, monEvent);
-        
+        VBox.setMargin(button, new Insets(15));
        
-        this.getChildren().add(button); 
+        container.getChildren().add(button);
+        
+        this.getChildren().add(this.container);
  
     }
    
@@ -162,6 +182,7 @@ public class VueCreationPersos extends VBox
     private void addBox() 
     {
     	HBox newClient = new HBox(); 
+    	newClient.setAlignment(Pos.CENTER);
 		TextField pseudoClient = new TextField();
 		Rectangle color = new Rectangle();
 		color.setHeight(25); 
