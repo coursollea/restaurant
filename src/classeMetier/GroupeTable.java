@@ -29,7 +29,6 @@ public class GroupeTable
 
 			int numerotable = result.getInt("numeroTable");
 					//Integer.valueOf((String) result.getObject(1));
-			
 			ID = idGroupe;
 			numeroTable = numerotable;
 
@@ -43,14 +42,11 @@ public class GroupeTable
 	{
 		numeroTable = numTab;
 		DataBaseManager connex = new DataBaseManager();
-		ResultSet result;
 		Connection bdd = connex.connectBDD(); 
 		Statement state;
 		try {
 			state = bdd.createStatement();
-			result = state.executeQuery("Select * From Groupe");
-			result.next();
-
+			
 			ID = state.executeUpdate("insert into Groupe(numeroTable) values('" + numeroTable + "')", Statement.RETURN_GENERATED_KEYS);
 			return ID;
 			

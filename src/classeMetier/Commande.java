@@ -50,19 +50,7 @@ public class Commande
 		int idComm;
 		try {
 			state = bdd.createStatement();
-			result = state.executeQuery("Select * From Commande");
-			result.next();
-
-			idComm = result.getInt("idCommande");
-			
-			if (idComm == ID)
-			{
-				state.executeUpdate("Update Commande SET dateCommande = '" + dateCommande + "' WHERE idCommande LIKE '" + ID);
-			}
-			else
-			{
-				ID = state.executeUpdate("insert into Commande(dateCommande) values('" + dateCommande + "')", Statement.RETURN_GENERATED_KEYS);
-			}
+			ID = state.executeUpdate("insert into Commande(dateCommande) values('" + dateCommande + "')", Statement.RETURN_GENERATED_KEYS);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

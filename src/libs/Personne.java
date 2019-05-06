@@ -58,6 +58,7 @@ public class Personne {
 	public Personne(String _couleur, String _pseudo, int _idGroupe)
 	{
 		this._nbTapasRest = 5;
+		
 		this._couleur = _couleur;
 		this._pseudo = _pseudo;
 		this._idGroupe = _idGroupe;

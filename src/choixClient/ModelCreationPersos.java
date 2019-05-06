@@ -17,7 +17,7 @@ public class ModelCreationPersos
 	
 	public void creerGrp(int numeroTable)
 	{
-		GroupeTable.fillChoix(GroupeTable.saveChoix(numeroTable));
+		GroupeTable.saveChoix(numeroTable);
 	}
 	
 }
