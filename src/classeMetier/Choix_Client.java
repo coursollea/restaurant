@@ -59,17 +59,9 @@ public class Choix_Client {
 			state = bdd.createStatement();
 			result = state.executeQuery("Select * From Choix_Client");
 			result.next();
-
 			
-			if (result.getObject(1) != null)
-			{
-				state.executeUpdate("Update Choix_Client SET idCommande = '" + idcommande + "' , idClient = '" + idclient + "' idTapas = '" + idtapas + "' WHERE idChoix LIKE '" + idchoix);
-			}
-			else
-			{
-				idchoix = state.executeUpdate("insert into Choix_Client(idCommande, idClient, idTapas) values('" + idcommande + "' , '" + idclient + "' , '" + idtapas + "')", Statement.RETURN_GENERATED_KEYS);
-				System.out.println(idchoix);
-			}
+			idchoix = state.executeUpdate("insert into Choix_Client(idCommande, idClient, idTapas) values('" + idcommande + "' , '" + idclient + "' , '" + idtapas + "')", Statement.RETURN_GENERATED_KEYS);
+				System.out.println("id choix : " + idchoix);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

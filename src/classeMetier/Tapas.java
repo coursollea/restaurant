@@ -11,10 +11,10 @@ import tool.DataBaseManager;
 public class Tapas
 {
 
-	private int ID;
-	private String nom;
+	private static int ID;
+	private static String nom;
 	
-	public void fillTapas(int ID)
+	public static void fillTapas(int IDey)
 	{
 		
 		ResultSet result; 
@@ -23,13 +23,13 @@ public class Tapas
 		Statement state;
 		try {
 			state = bdd.createStatement();
-			result = state.executeQuery("Select * From Tapas Where Tapas.ID = " + ID); // récupérer les infos de la table Categorie correspondant à l'id en paramètre
+			result = state.executeQuery("Select * From Tapas Where Tapas.idTapas = " + IDey); // récupérer les infos de la table Categorie correspondant à l'id en paramètre
 			
 			ResultSetMetaData resultMeta = result.getMetaData();
 			result.next();
 
 			nom = result.getObject(2).toString();
-			this.ID = ID; 
+			ID = IDey; 
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

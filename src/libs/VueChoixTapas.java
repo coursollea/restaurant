@@ -3,6 +3,7 @@ package libs;
 import choixClient.VueCreationPersos;
 import classeMetier.Choix_Client;
 import classeMetier.Commande;
+import classeMetier.Tapas;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -50,7 +51,7 @@ public class VueChoixTapas extends ScrollPane {
 	    BorderPane.setMargin(caseinfo, new Insets(20,20,20,20));
 		
 	    Commande.setDateCommande();
-	    Commande.saveCategorie();
+	    Commande.saveCommande();
 	    
 		for(j = 1 ; j < modelChoixTapas.getNbTapastotal() + 1 ; j++)
 		{
@@ -67,19 +68,20 @@ public class VueChoixTapas extends ScrollPane {
 			butt.setOnAction(new EventHandler<ActionEvent>() 
 			{
 	            public void handle(ActionEvent event) {
-	                System.out.println(butt.getText());
-	                System.out.println(cb.getValue());
+	                System.out.println("idTapas choisi : " + butt.getText());
+	                System.out.println("currentPersonne : " + cb.getValue());
 	                if (cb.getValue() != null)
 	                {
 	                	Personne current = (Personne) cb.getValue();
-	                	System.out.println(current.getNbTapasRest());
+	                	System.out.println("nbTapas restant : " + current.getNbTapasRest());
 	                	
 	                	current.setNbTapasRest(current.getNbTapasRest() - 1);
 		                nbTapasrestant.setText("Tapas Restants : " + String.valueOf(current.getNbTapasRest()));
 		                
+		                Tapas.fillTapas(Integer.valueOf(butt.getText()));
 		                Choix_Client choixcli = new Choix_Client(Commande.getID(), current.get_idClient(), Integer.valueOf(butt.getText()));
-		                Choix_Client.fillChoix(j);
 		                Choix_Client.saveChoix();
+		                
 		                
 	                }
 	                else

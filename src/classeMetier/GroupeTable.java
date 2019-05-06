@@ -52,7 +52,6 @@ public class GroupeTable
 			result.next();
 
 			ID = state.executeUpdate("insert into Groupe(numeroTable) values('" + numeroTable + "')", Statement.RETURN_GENERATED_KEYS);
-			System.out.println(ID);
 			return ID;
 			
 		} catch (SQLException e) {

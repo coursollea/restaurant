@@ -41,7 +41,7 @@ public class Commande
 		
 	}
 	
-	public static void saveCategorie()
+	public static void saveCommande()
 	{
 		DataBaseManager connex = new DataBaseManager();
 		ResultSet result;

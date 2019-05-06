@@ -145,7 +145,7 @@ public class VueCreationPersos extends VBox
 		        		mdl.creerGrp(newTableSpinnerValue);
 		        		groupverif = 1;
 		        	}
-		        	mdl.addClient(i, pseudo.getText(), hex, newTableSpinnerValue);
+		        	mdl.addClient(pseudo.getText(), hex, newTableSpinnerValue);
 	        	}
 	        	 
 	        	 GrosModel.setNbPerso(newSpinnerValue);

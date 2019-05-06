@@ -11,12 +11,13 @@ import tool.DataBaseManager;
 public class Personne {
 	
 	private int _idClient;
+	private int _nbTapasRest = 5;
+	private String _couleur;
+	private String _pseudo;
+	private int _idGroupe;
+	
 	public int get_idClient() {
 		return _idClient;
-	}
-
-	public void set_idClient(int _idClient) {
-		this._idClient = _idClient;
 	}
 
 	public String get_pseudo() {
@@ -27,19 +28,14 @@ public class Personne {
 		this._pseudo = _pseudo;
 	}
 
-	private int _nbTapasRest = 5;
-	private String _couleur;
-	private String _pseudo;
-	private int _idGroupe;
-	
 	public void savePersonne()
 	{
 		Statement state;
 		try {
 
 			state = DataBaseManager.connectBDD().createStatement();
-			state.executeUpdate("insert into client(idClientGroupe, pseudo, couleur, idGroupe) values ('" + _idClient +"','" + _pseudo +"','"+ _couleur +"','"+ _idGroupe +"')");
-
+			_idClient = state.executeUpdate("insert into client(pseudo, couleur, idGroupe) values ('" + _pseudo +"','"+ _couleur +"','"+ _idGroupe +"')", Statement.RETURN_GENERATED_KEYS);
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -59,9 +55,8 @@ public class Personne {
 		this._nbTapasRest = nbTapasMax;
 	}
 	
-	public Personne(int idClient, String _couleur, String _pseudo, int _idGroupe)
+	public Personne(String _couleur, String _pseudo, int _idGroupe)
 	{
-		this._idClient = idClient;
 		this._nbTapasRest = 5;
 		this._couleur = _couleur;
 		this._pseudo = _pseudo;

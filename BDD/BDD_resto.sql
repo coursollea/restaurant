@@ -10,7 +10,6 @@ create table Groupe (
 
 create table Client (
 	idClient int(11) NOT NULL auto_increment,
-	idClientGroupe int(11) NOT NULL,
 	pseudo varchar(64), 
 	couleur varchar(64),
 	idGroupe int(11),
@@ -69,7 +68,6 @@ alter table Choix_Client
 add constraint Choix_Client_idClient
 foreign key (idClient)
 references Client (idClient);
-
 
 INSERT INTO Commande (dateCommande) VALUES
 ("2018-07-26"),
