@@ -73,15 +73,18 @@ public class VueChoixTapas extends ScrollPane {
 	                if (cb.getValue() != null)
 	                {
 	                	Personne current = (Personne) cb.getValue();
-	                	System.out.println("nbTapas restant : " + current.getNbTapasRest());
-	                	
-	                	current.setNbTapasRest(current.getNbTapasRest() - 1);
-		                nbTapasrestant.setText("Tapas Restants : " + String.valueOf(current.getNbTapasRest()));
-		                
-		                Tapas.fillTapas(Integer.valueOf(butt.getText()));
-		                Choix_Client choixcli = new Choix_Client(Commande.getID(), current.get_idClient(), Integer.valueOf(butt.getText()));
-		                Choix_Client.saveChoix();
-		                
+	                	if(current.getNbTapasRest() > 0)
+	                	{
+		                	System.out.println("nbTapas restant : " + current.getNbTapasRest());
+		                	
+		                	
+		                	current.setNbTapasRest(current.getNbTapasRest() - 1);
+			                nbTapasrestant.setText("Tapas Restants : " + String.valueOf(current.getNbTapasRest()));
+			                
+			                Tapas.fillTapas(Integer.valueOf(butt.getText()));
+			                Choix_Client choixcli = new Choix_Client(Commande.getID(), current.get_idClient(), Integer.valueOf(butt.getText()));
+			                Choix_Client.saveChoix();
+	                	}
 		                
 	                }
 	                else
@@ -108,5 +111,6 @@ public class VueChoixTapas extends ScrollPane {
 		container.setLeft(caseinfo);
 		container.setRight(casetapas);
 		this.setContent(container);
+		
 	}
 }
