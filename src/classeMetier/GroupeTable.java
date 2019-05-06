@@ -6,6 +6,8 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.mysql.jdbc.PreparedStatement;
+
 import tool.DataBaseManager;
 
 public class GroupeTable 
@@ -44,10 +46,17 @@ public class GroupeTable
 		DataBaseManager connex = new DataBaseManager();
 		Connection bdd = connex.connectBDD(); 
 		Statement state;
+		long key = -1L;
 		try {
 			state = bdd.createStatement();
 			
-			ID = state.executeUpdate("insert into Groupe(numeroTable) values('" + numeroTable + "')", Statement.RETURN_GENERATED_KEYS);
+			state.executeUpdate("insert into Groupe(numeroTable) values('" + numeroTable + "')", PreparedStatement.RETURN_GENERATED_KEYS);
+			
+			ResultSet rs = state.getGeneratedKeys();
+			if (rs != null && rs.next()) {
+			    key = rs.getLong(1);
+			    ID = (int) key;
+			}
 			return ID;
 			
 		} catch (SQLException e) {

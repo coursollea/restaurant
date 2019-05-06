@@ -6,6 +6,8 @@ import choixClient.VueCreationPersos;
 import classeMetier.Choix_Client;
 import classeMetier.Commande;
 import classeMetier.Tapas;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -29,6 +31,8 @@ public class VueChoixTapas extends ScrollPane {
 	private ModelChoixTapas modelChoixTapas;
 	private VueCreationPersos vu;
 	private GrosModel gmdl;
+	private Text nbTapasrestant;
+   
 	
 	public void init(ModelChoixTapas modelChoixTapas)
 	{
@@ -37,6 +41,8 @@ public class VueChoixTapas extends ScrollPane {
 	
 	public void start()
 	{
+		nbTapasrestant = new Text();
+		
 		BorderPane container = new BorderPane();
 		
 		VBox casetapas = new VBox(2);
@@ -46,8 +52,21 @@ public class VueChoixTapas extends ScrollPane {
 		ChoiceBox cb = new ChoiceBox();
 		cb.setItems(FXCollections.observableArrayList(gmdl.getListegens()));
 		
-		Text nbTapasrestant = new Text();
-	    nbTapasrestant.setText("Tapas Restants : " + String.valueOf(modelChoixTapas.getNbTapasrestant()));
+		ChangeListener<Personne> changeListener = new ChangeListener<Personne>() {
+			 
+            @Override
+            public void changed(ObservableValue<? extends Personne> observable, //
+                    Personne oldValue, Personne newValue) {
+                if (newValue != null) {
+                	Personne current = (Personne) cb.getValue();
+                	nbTapasrestant.setText("Tapas Restants : " + String.valueOf(current.getNbTapasRest()));
+                }
+            }
+        };
+        
+        cb.getSelectionModel().selectedItemProperty().addListener(changeListener);
+		
+		
 		
 	    Text erreur = new Text();
 	    erreur.setText("");

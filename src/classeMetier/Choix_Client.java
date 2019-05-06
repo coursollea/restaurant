@@ -6,6 +6,8 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.mysql.jdbc.PreparedStatement;
+
 import tool.DataBaseManager;
 
 public class Choix_Client {
@@ -54,11 +56,19 @@ public class Choix_Client {
 		DataBaseManager connex = new DataBaseManager();
 		Connection bdd = connex.connectBDD(); 
 		Statement state;
+		long key = -1L;
 		try {
 			state = bdd.createStatement();
+			System.out.println("insert into Choix_Client(idCommande, idClient, idTapas) values('" + idcommande + "' , '" + idclient + "' , '" + idtapas + "')");
+			state.executeUpdate("insert into Choix_Client(idCommande, idClient, idTapas) values('" + idcommande + "' , '" + idclient + "' , '" + idtapas + "')", PreparedStatement.RETURN_GENERATED_KEYS);
 			
-			idchoix = state.executeUpdate("insert into Choix_Client(idCommande, idClient, idTapas) values('" + idcommande + "' , '" + idclient + "' , '" + idtapas + "')", Statement.RETURN_GENERATED_KEYS);
-				System.out.println("id choix : " + idchoix);
+			ResultSet rs = state.getGeneratedKeys();
+			if (rs != null && rs.next()) {
+			    key = rs.getLong(1);
+			    idchoix = (int) key;
+			}
+			
+			System.out.println("id choix : " + idchoix);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
