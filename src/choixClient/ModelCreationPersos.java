@@ -1,15 +1,16 @@
 package choixClient;
 
 import classeMetier.GroupeTable;
+import classeMetier.Personne;
 import libs.GrosModel;
-import libs.Personne;
 
 public class ModelCreationPersos
 {
-
-	public void addClient(String pseudo, String couleur, int numTable)
+	private GroupeTable table;
+	
+	public void addClient(String pseudo, String couleur)
 	{
-		Personne client = new Personne(couleur, pseudo, numTable);
+		Personne client = new Personne(couleur, pseudo, table.getID());
 		client.savePersonne();
 		GrosModel.addPersonne(client);
 
@@ -17,7 +18,10 @@ public class ModelCreationPersos
 	
 	public void creerGrp(int numeroTable)
 	{
-		GroupeTable.saveChoix(numeroTable);
+		System.out.println(numeroTable);
+		table = new GroupeTable();
+		table.setNumeroTable(numeroTable);
+		table.saveChoix();
 	}
 	
 }

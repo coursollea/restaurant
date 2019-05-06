@@ -59,7 +59,6 @@ public class Choix_Client {
 		long key = -1L;
 		try {
 			state = bdd.createStatement();
-			System.out.println("insert into Choix_Client(idCommande, idClient, idTapas) values('" + idcommande + "' , '" + idclient + "' , '" + idtapas + "')");
 			state.executeUpdate("insert into Choix_Client(idCommande, idClient, idTapas) values('" + idcommande + "' , '" + idclient + "' , '" + idtapas + "')", PreparedStatement.RETURN_GENERATED_KEYS);
 			
 			ResultSet rs = state.getGeneratedKeys();

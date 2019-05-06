@@ -5,6 +5,7 @@ import java.io.InputStream;
 import choixClient.VueCreationPersos;
 import classeMetier.Choix_Client;
 import classeMetier.Commande;
+import classeMetier.Personne;
 import classeMetier.Tapas;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
