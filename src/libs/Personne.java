@@ -6,6 +6,8 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.mysql.jdbc.PreparedStatement;
+
 import tool.DataBaseManager;
 
 public class Personne {
@@ -31,11 +33,17 @@ public class Personne {
 	public void savePersonne()
 	{
 		Statement state;
+		long key = -1L;
 		try {
 
 			state = DataBaseManager.connectBDD().createStatement();
-			_idClient = state.executeUpdate("insert into client(pseudo, couleur, idGroupe) values ('" + _pseudo +"','"+ _couleur +"','"+ _idGroupe +"')", Statement.RETURN_GENERATED_KEYS);
+			state.executeUpdate("insert into client(pseudo, couleur, idGroupe) values ('" + _pseudo +"','"+ _couleur +"','"+ _idGroupe +"')", PreparedStatement.RETURN_GENERATED_KEYS);
 			
+			ResultSet rs = state.getGeneratedKeys();
+			if (rs != null && rs.next()) {
+			    key = rs.getLong(1);
+			    _idClient = (int) key;
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

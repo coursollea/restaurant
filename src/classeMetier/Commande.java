@@ -9,6 +9,8 @@ import java.text.SimpleDateFormat;
 import java.text.DateFormat;
 import java.util.Calendar;
 
+import com.mysql.jdbc.PreparedStatement;
+
 import tool.DataBaseManager;
 
 public class Commande 
@@ -47,10 +49,17 @@ public class Commande
 		ResultSet result;
 		Connection bdd = connex.connectBDD(); 
 		Statement state;
+		long key = -1L;
 		int idComm;
 		try {
 			state = bdd.createStatement();
-			ID = state.executeUpdate("insert into Commande(dateCommande) values('" + dateCommande + "')", Statement.RETURN_GENERATED_KEYS);
+			state.executeUpdate("insert into Commande(dateCommande) values('" + dateCommande + "')", PreparedStatement.RETURN_GENERATED_KEYS);
+
+			ResultSet rs = state.getGeneratedKeys();
+			if (rs != null && rs.next()) {
+			    key = rs.getLong(1);
+			    ID = (int) key;
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
