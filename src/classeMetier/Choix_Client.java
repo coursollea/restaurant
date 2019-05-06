@@ -52,13 +52,10 @@ public class Choix_Client {
 	public static void saveChoix()
 	{
 		DataBaseManager connex = new DataBaseManager();
-		ResultSet result;
 		Connection bdd = connex.connectBDD(); 
 		Statement state;
 		try {
 			state = bdd.createStatement();
-			result = state.executeQuery("Select * From Choix_Client");
-			result.next();
 			
 			idchoix = state.executeUpdate("insert into Choix_Client(idCommande, idClient, idTapas) values('" + idcommande + "' , '" + idclient + "' , '" + idtapas + "')", Statement.RETURN_GENERATED_KEYS);
 				System.out.println("id choix : " + idchoix);

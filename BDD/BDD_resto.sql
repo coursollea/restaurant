@@ -69,20 +69,6 @@ add constraint Choix_Client_idClient
 foreign key (idClient)
 references Client (idClient);
 
-INSERT INTO Commande (dateCommande) VALUES
-("2018-07-26"),
-("2018-07-26"),
-("2018-07-26"),
-("2018-07-26"),
-("2018-07-26"),
-("2018-07-26"),
-("2018-07-26"),
-("2018-07-26"),
-("2018-07-26"),
-("2018-07-26"),
-("2018-07-26"),
-("2018-07-26");
-
 INSERT INTO Categorie (libelle) VALUES
 ("Poulettito"),
 ("Legumes de mer"),
