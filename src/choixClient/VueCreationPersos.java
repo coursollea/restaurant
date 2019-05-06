@@ -114,7 +114,7 @@ public class VueCreationPersos extends VBox
 	        	
 	        	newTableSpinnerValue = spinnerTable.getValue();
 	        	GrosModel.setNumTable(newTableSpinnerValue);
-	        	
+	        	mdl.creerGrp(newTableSpinnerValue);
 	        	for (int i = 0; i < panelClient.getChildren().size(); i++ )
 	        	{
 	        		
@@ -140,16 +140,11 @@ public class VueCreationPersos extends VBox
 		        		hex = "#" + Integer.toHexString(Color.GREEN.hashCode());
 		        	}
 		        	
-		        	if(groupverif == 0)
-		        	{
-		        		mdl.creerGrp(newTableSpinnerValue);
-		        		groupverif = 1;
-		        	}
 		        	mdl.addClient(pseudo.getText(), hex, newTableSpinnerValue);
 	        	}
-	        	 
-	        	 GrosModel.setNbPerso(newSpinnerValue);
-	        	 ChangerWindows.changeWindows("libs");
+	        	
+	        	GrosModel.setNbPerso(newSpinnerValue);
+	        	ChangerWindows.changeWindows("libs");
 	        } 
         }; 
         

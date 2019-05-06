@@ -68,15 +68,15 @@ public class VueChoixTapas extends ScrollPane {
 			butt.setOnAction(new EventHandler<ActionEvent>() 
 			{
 	            public void handle(ActionEvent event) {
-	                System.out.println("idTapas choisi : " + butt.getText());
-	                System.out.println("currentPersonne : " + cb.getValue());
+	                
 	                if (cb.getValue() != null)
 	                {
 	                	Personne current = (Personne) cb.getValue();
 	                	if(current.getNbTapasRest() > 0)
 	                	{
+	                		System.out.println("idTapas choisi : " + butt.getText());
+	    	                System.out.println("currentPersonne : " + cb.getValue());
 		                	System.out.println("nbTapas restant : " + current.getNbTapasRest());
-		                	
 		                	
 		                	current.setNbTapasRest(current.getNbTapasRest() - 1);
 			                nbTapasrestant.setText("Tapas Restants : " + String.valueOf(current.getNbTapasRest()));
@@ -85,13 +85,11 @@ public class VueChoixTapas extends ScrollPane {
 			                Choix_Client choixcli = new Choix_Client(Commande.getID(), current.get_idClient(), Integer.valueOf(butt.getText()));
 			                Choix_Client.saveChoix();
 	                	}
-		                
+	                	else
+	                	{
+	                		System.out.println("Il ne reste plus de tapas pour " + cb.getValue());
+	                	}
 	                }
-	                else
-	                {
-	                	
-	                }
-	                
 	            }
 	        });
 			
