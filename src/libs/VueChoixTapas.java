@@ -12,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ScrollPane;
@@ -41,10 +42,15 @@ public class VueChoixTapas extends ScrollPane {
 	
 	public void start()
 	{
+		
 		nbTapasrestant = new Text();
 		
 		BorderPane container = new BorderPane();
-		
+		//container.setStyle("-fx-background-color: red");
+		container.setStyle("-fx-background-image: url('image/tapasCommande_modif.jpg')");
+		//container.setMaxSize(640, 424);
+		container.setPrefWidth(640);
+		container.setPrefHeight(424);
 		VBox casetapas = new VBox(2);
 		
 		VBox caseinfo = new VBox(2);
