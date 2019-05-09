@@ -12,11 +12,22 @@ import tool.DataBaseManager;
 
 public class GroupeTable 
 {
-	private static int ID;
-	private static int numeroTable; 
+	private int ID;
+	private int numeroTable; 
 
+	public int getID() {
+		return ID;
+	}
 	
-	public static void fillChoix(int idGroupe)
+	public int getNumeroTable() {
+		return numeroTable;
+	}
+
+	public void setNumeroTable(int numeroTable) {
+		this.numeroTable = numeroTable;
+	}
+
+	public void fillChoix(int idGroupe)
 	{
 		ResultSet result; 
 		DataBaseManager connex = new DataBaseManager();
@@ -40,9 +51,8 @@ public class GroupeTable
 		} 
 	}
 	
-	public static int saveChoix(int numTab)
+	public void saveChoix()
 	{
-		numeroTable = numTab;
 		DataBaseManager connex = new DataBaseManager();
 		Connection bdd = connex.connectBDD(); 
 		Statement state;
@@ -57,13 +67,11 @@ public class GroupeTable
 			    key = rs.getLong(1);
 			    ID = (int) key;
 			}
-			return ID;
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return 1;
-		
 	}
 }

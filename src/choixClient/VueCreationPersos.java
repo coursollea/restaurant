@@ -4,6 +4,7 @@ package choixClient;
 
 import changeWindows.ChangerWindows;
 import classeMetier.GroupeTable;
+import classeMetier.Personne;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -20,7 +21,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import libs.VueChoixTapas;
 import libs.GrosModel;
-import libs.Personne;
 
 public class VueCreationPersos extends VBox
 {
@@ -140,7 +140,7 @@ public class VueCreationPersos extends VBox
 		        		hex = "#" + Integer.toHexString(Color.GREEN.hashCode());
 		        	}
 		        	
-		        	mdl.addClient(pseudo.getText(), hex, newTableSpinnerValue);
+		        	mdl.addClient(pseudo.getText(), hex);
 	        	}
 	        	
 	        	GrosModel.setNbPerso(newSpinnerValue);

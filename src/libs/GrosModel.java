@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import classeMetier.Personne;
 import tool.DataBaseManager;
 
 public class GrosModel {

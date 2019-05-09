@@ -1,4 +1,4 @@
-package libs;
+package classeMetier;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -37,6 +37,7 @@ public class Personne {
 		try {
 
 			state = DataBaseManager.connectBDD().createStatement();
+			System.out.println("insert into client(pseudo, couleur, idGroupe) values ('" + _pseudo +"','"+ _couleur +"','"+ _idGroupe +"')");
 			state.executeUpdate("insert into client(pseudo, couleur, idGroupe) values ('" + _pseudo +"','"+ _couleur +"','"+ _idGroupe +"')", PreparedStatement.RETURN_GENERATED_KEYS);
 			
 			ResultSet rs = state.getGeneratedKeys();
@@ -66,7 +67,6 @@ public class Personne {
 	public Personne(String _couleur, String _pseudo, int _idGroupe)
 	{
 		this._nbTapasRest = 5;
-		
 		this._couleur = _couleur;
 		this._pseudo = _pseudo;
 		this._idGroupe = _idGroupe;
