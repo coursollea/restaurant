@@ -37,7 +37,6 @@ public class Personne {
 		try {
 
 			state = DataBaseManager.connectBDD().createStatement();
-			System.out.println("insert into client(pseudo, couleur, idGroupe) values ('" + _pseudo +"','"+ _couleur +"','"+ _idGroupe +"')");
 			state.executeUpdate("insert into client(pseudo, couleur, idGroupe) values ('" + _pseudo +"','"+ _couleur +"','"+ _idGroupe +"')", PreparedStatement.RETURN_GENERATED_KEYS);
 			
 			ResultSet rs = state.getGeneratedKeys();

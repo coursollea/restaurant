@@ -47,11 +47,9 @@ public class VueChoixTapas extends ScrollPane {
 		nbTapasrestant = new Text();
 		
 		BorderPane container = new BorderPane();
-		//container.setStyle("-fx-background-color: red");
 		container.setStyle("-fx-background-image: url('image/tapasCommande_modif.jpg')");
-		//container.setMaxSize(640, 424);
-		container.setPrefWidth(640);
-		container.setPrefHeight(424);
+		container.setPrefWidth(638);
+		container.setPrefHeight(398);
 		VBox casetapas = new VBox(2);
 		
 		VBox caseinfo = new VBox(2);
@@ -73,8 +71,6 @@ public class VueChoixTapas extends ScrollPane {
         
         cb.getSelectionModel().selectedItemProperty().addListener(changeListener);
 		
-		
-		
 	    Text erreur = new Text();
 	    erreur.setText("");
 	    
@@ -86,7 +82,9 @@ public class VueChoixTapas extends ScrollPane {
 		for(j = 1 ; j < modelChoixTapas.getNbTapastotal() + 1 ; j++)
 		{
 			Text ligne = new Text();
-			ligne.setText("__________________________________________");
+			ligne.setText("____________________________________________________________________________________");
+			
+			HBox lignetapas = new HBox();
 			
 			HBox tapas = new HBox();
 			
@@ -103,13 +101,22 @@ public class VueChoixTapas extends ScrollPane {
 	                {
 	                	Personne current = (Personne) cb.getValue();
 	                	if(current.getNbTapasRest() > 0)
-	                	{
-	                		System.out.println("idTapas choisi : " + butt.getText());
-	    	                System.out.println("currentPersonne : " + cb.getValue());
-		                	System.out.println("nbTapas restant : " + current.getNbTapasRest());
-		                	
+	                	{		                	
 		                	current.setNbTapasRest(current.getNbTapasRest() - 1);
 			                nbTapasrestant.setText("Tapas Restants : " + String.valueOf(current.getNbTapasRest()));
+			                
+			                if (cb.getValue() == gmdl.getListegens().get(0)) {
+			                	TapasBox.set_nbClickpers1(TapasBox.get_nbClickpers1() + 1);
+			                }
+			                if (cb.getValue() == gmdl.getListegens().get(1)) {
+			                	TapasBox.set_nbClickpers2(TapasBox.get_nbClickpers2() + 1);
+			                }
+			                if (cb.getValue() == gmdl.getListegens().get(2)) {
+			                	TapasBox.set_nbClickpers3(TapasBox.get_nbClickpers3() + 1);
+			                }
+			                if (cb.getValue() == gmdl.getListegens().get(3)) {
+			                	TapasBox.set_nbClickpers4(TapasBox.get_nbClickpers4() + 1);
+			                }
 			                
 			                Tapas.fillTapas(Integer.valueOf(butt.getText()));
 			                Choix_Client choixcli = new Choix_Client(Commande.getID(), current.get_idClient(), Integer.valueOf(butt.getText()));
@@ -127,17 +134,21 @@ public class VueChoixTapas extends ScrollPane {
 			tapas.getChildren().add(nomTapas);
 			tapas.getChildren().add(butt);
 			
+			lignetapas.getChildren().add(tapas);
+			TapasBox boite = new TapasBox();
+			boite.start();
+			lignetapas.getChildren().add(boite);
+					
 			casetapas.getChildren().add(ligne);
-			casetapas.getChildren().add(tapas);
-			
+			casetapas.getChildren().add(lignetapas);
 		}
 
-
+		
 	    caseinfo.getChildren().add(cb);
 	    caseinfo.getChildren().add(nbTapasrestant);
 	    
 		container.setLeft(caseinfo);
-		container.setRight(casetapas);
+		container.setCenter(casetapas);
 		this.setContent(container);
 
 		
