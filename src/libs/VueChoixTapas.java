@@ -83,6 +83,7 @@ public class VueChoixTapas extends ScrollPane {
 		{
 			Text ligne = new Text();
 			ligne.setText("____________________________________________________________________________________");
+			TapasBox boite = new TapasBox();
 			
 			HBox lignetapas = new HBox();
 			
@@ -104,20 +105,39 @@ public class VueChoixTapas extends ScrollPane {
 	                	{		                	
 		                	current.setNbTapasRest(current.getNbTapasRest() - 1);
 			                nbTapasrestant.setText("Tapas Restants : " + String.valueOf(current.getNbTapasRest()));
-			                
-			                if (cb.getValue() == gmdl.getListegens().get(0)) {
-			                	TapasBox.set_nbClickpers1(TapasBox.get_nbClickpers1() + 1);
+			                for (int cpt = 1 ; cpt < 5 ; cpt++) {
+			                	int cptlongcb = 0;
+			                	if((cb.getItems().size()) == cpt) {
+				               		if (cpt >= 1) {
+				               			if (cb.getValue() == gmdl.getListegens().get(0)) {
+						                	TapasBox.set_nbClickpers1(TapasBox.get_nbClickpers1() + 1);
+						                	System.out.println(TapasBox.get_nbClickpers1());
+						                }
+				               		}
+				               		
+				               		if (cpt >= 2) {
+				               			if (cb.getValue() == gmdl.getListegens().get(1)) {
+						                	TapasBox.set_nbClickpers2(TapasBox.get_nbClickpers2() + 1);
+						                	System.out.println(TapasBox.get_nbClickpers2());
+						                }
+				               		}
+				               		
+				               		if (cpt >= 3) {
+				               			if (cb.getValue() == gmdl.getListegens().get(2)) {
+						                	TapasBox.set_nbClickpers3(TapasBox.get_nbClickpers3() + 1);
+						                	System.out.println(TapasBox.get_nbClickpers3());
+						                }
+				               		}
+				               		
+				               		if (cpt >= 4) {
+				               			if (cb.getValue() == gmdl.getListegens().get(3)) {
+						                	TapasBox.set_nbClickpers4(TapasBox.get_nbClickpers4() + 1);
+						                	System.out.println(TapasBox.get_nbClickpers4());
+						                }
+				               		}
+				               	}
 			                }
-			                if (cb.getValue() == gmdl.getListegens().get(1)) {
-			                	TapasBox.set_nbClickpers2(TapasBox.get_nbClickpers2() + 1);
-			                }
-			                if (cb.getValue() == gmdl.getListegens().get(2)) {
-			                	TapasBox.set_nbClickpers3(TapasBox.get_nbClickpers3() + 1);
-			                }
-			                if (cb.getValue() == gmdl.getListegens().get(3)) {
-			                	TapasBox.set_nbClickpers4(TapasBox.get_nbClickpers4() + 1);
-			                }
-			                
+			               	
 			                Tapas.fillTapas(Integer.valueOf(butt.getText()));
 			                Choix_Client choixcli = new Choix_Client(Commande.getID(), current.get_idClient(), Integer.valueOf(butt.getText()));
 			                Choix_Client.saveChoix();
@@ -135,7 +155,7 @@ public class VueChoixTapas extends ScrollPane {
 			tapas.getChildren().add(butt);
 			
 			lignetapas.getChildren().add(tapas);
-			TapasBox boite = new TapasBox();
+			
 			boite.start();
 			lignetapas.getChildren().add(boite);
 					
