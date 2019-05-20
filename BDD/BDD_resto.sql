@@ -26,7 +26,7 @@ create table Choix_Client (
 
 create table Commande (
 	idCommande int(11) NOT NULL auto_increment,
-	dateCommande date,
+	dateCommande datetime,
 	primary key (idCommande)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

@@ -89,7 +89,7 @@ public class Commande
 
 	private static String GetCurrentDateTime()
 	{
-	    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	    Calendar cal = Calendar.getInstance();
 	    String la_date = dateFormat.format(cal.getTime());
 		return la_date;
