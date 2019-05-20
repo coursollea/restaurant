@@ -82,7 +82,7 @@ public class VueChoixTapas extends ScrollPane {
 		for(j = 1 ; j < modelChoixTapas.getNbTapastotal() + 1 ; j++)
 		{
 			Text ligne = new Text();
-			ligne.setText("____________________________________________________________________________________");
+			ligne.setText("______________________________________________________________________");
 			TapasBox boite = new TapasBox();
 			
 			HBox lignetapas = new HBox();
@@ -144,11 +144,13 @@ public class VueChoixTapas extends ScrollPane {
 	                	}
 	                	else
 	                	{
-	                		System.out.println("Il ne reste plus de tapas pour " + cb.getValue());
+	                		System.out.println("Stop! Va manger des tapas " + cb.getValue());
 	                	}
 	                }
 	            }
 	        });
+			
+		
 			
 			HBox.setMargin(butt, new Insets(1,0,1,10));
 			tapas.getChildren().add(nomTapas);
@@ -162,6 +164,15 @@ public class VueChoixTapas extends ScrollPane {
 			casetapas.getChildren().add(ligne);
 			casetapas.getChildren().add(lignetapas);
 		}
+		
+		Button boutton = new Button(); 
+		boutton.setOnAction(new EventHandler<ActionEvent>() 
+		{
+            public void handle(ActionEvent event) {
+            	Choix_Client deleteChoixClient = new Choix_Client(Commande.getID(), current.get_idClient(), Integer.valueOf(boutton.getText()));
+            }
+		});
+                
 
 		
 	    caseinfo.getChildren().add(cb);
