@@ -82,7 +82,7 @@ public class Choix_Client {
 		Statement state;
 		try {
 			state = bdd.createStatement();
-			state.executeQuery("Delete dateCommande  inner join commande on commande.ID = choix_Client.id	commande Where ID = " + commande);
+			state.executeQuery("Delete dateCommande  inner join commande on commande.ID = choix_Client.idcommande Where ID = " + commande);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
