@@ -34,6 +34,8 @@ public class VueChoixTapas extends ScrollPane {
 	private VueCreationPersos vu;
 	private GrosModel gmdl;
 	private Text nbTapasrestant;
+	private boolean isReset = false;
+	private Personne PERSONNEreset;
    
 	
 	public void init(ModelChoixTapas modelChoixTapas)
@@ -59,7 +61,6 @@ public class VueChoixTapas extends ScrollPane {
 		
 		ChangeListener<Personne> changeListener = new ChangeListener<Personne>() {
 			 
-            @Override
             public void changed(ObservableValue<? extends Personne> observable, //
                     Personne oldValue, Personne newValue) {
                 if (newValue != null) {
@@ -101,6 +102,10 @@ public class VueChoixTapas extends ScrollPane {
 	                if (cb.getValue() != null)
 	                {
 	                	Personne current = (Personne) cb.getValue();
+	                	if(isReset == true) {
+	                		isReset = false;
+	                		PERSONNEreset.setNbTapasRest(5);
+	                	}
 	                	if(current.getNbTapasRest() > 0)
 	                	{		                	
 		                	current.setNbTapasRest(current.getNbTapasRest() - 1);
@@ -169,7 +174,14 @@ public class VueChoixTapas extends ScrollPane {
 		bouton.setOnAction(new EventHandler<ActionEvent>() 
 		{
             public void handle(ActionEvent event) {
-            	Commande.delete(Commande.getDateCommande());
+            	Personne current = (Personne) cb.getValue();
+            	PERSONNEreset = current;
+            	Commande.delete(Commande.getDateCommande(), current.get_idClient());
+            	TapasBox.set_nbClickpers1(0);
+            	TapasBox.set_nbClickpers2(0);
+            	TapasBox.set_nbClickpers3(0);
+            	TapasBox.set_nbClickpers4(0);
+            	isReset = true;
             }
 		});
                 
@@ -177,7 +189,12 @@ public class VueChoixTapas extends ScrollPane {
 		
 	    caseinfo.getChildren().add(cb);
 	    caseinfo.getChildren().add(nbTapasrestant);
+<<<<<<< HEAD
 	    caseinfo.getChildren().add(bouton);
+=======
+	    caseinfo.getChildren().add(boutton);
+
+>>>>>>> 0c14c110e794ee09cd2b578cb3751cceb72e52db
 		container.setLeft(caseinfo);
 		container.setCenter(casetapas);
 		this.setContent(container);
