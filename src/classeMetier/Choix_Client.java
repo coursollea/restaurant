@@ -75,6 +75,7 @@ public class Choix_Client {
 		
 	}
 	
+
 	public void delete(Commande commande)
 	{
 		DataBaseManager connex = new DataBaseManager();
@@ -89,6 +90,7 @@ public class Choix_Client {
 		}  
 		
 	}
+
 	
 	public int getIdChoix() {
 		return idchoix;
