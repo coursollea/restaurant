@@ -165,8 +165,8 @@ public class VueChoixTapas extends ScrollPane {
 			casetapas.getChildren().add(lignetapas);
 		}
 		
-		Button boutton = new Button("Recommander"); 
-		boutton.setOnAction(new EventHandler<ActionEvent>() 
+		Button bouton = new Button("Recommander"); 
+		bouton.setOnAction(new EventHandler<ActionEvent>() 
 		{
             public void handle(ActionEvent event) {
             	Commande.delete(Commande.getDateCommande());
@@ -177,7 +177,7 @@ public class VueChoixTapas extends ScrollPane {
 		
 	    caseinfo.getChildren().add(cb);
 	    caseinfo.getChildren().add(nbTapasrestant);
-	    caseinfo.getChildren().add(boutton);
+	    caseinfo.getChildren().add(bouton);
 		container.setLeft(caseinfo);
 		container.setCenter(casetapas);
 		this.setContent(container);

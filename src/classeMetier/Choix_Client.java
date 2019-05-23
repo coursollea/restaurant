@@ -76,20 +76,7 @@ public class Choix_Client {
 	}
 	
 
-	public void delete(Commande commande)
-	{
-		DataBaseManager connex = new DataBaseManager();
-		Connection bdd = connex.connectBDD(); 
-		Statement state;
-		try {
-			state = bdd.createStatement();
-			state.executeQuery("Delete dateCommande  inner join commande on commande.ID = choix_Client.idcommande Where ID = " + commande);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}  
-		
-	}
+
 
 	
 	public int getIdChoix() {

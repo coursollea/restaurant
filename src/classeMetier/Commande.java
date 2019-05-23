@@ -67,6 +67,23 @@ public class Commande
 		
 	}
 	
+	public void delete(DateFormat commande)
+	{
+		DataBaseManager connex = new DataBaseManager();
+		Connection bdd = connex.connectBDD(); 
+		ResultSet result;
+		Statement state;
+		try {
+			state = bdd.createStatement();
+			result = state.executeQuery("SELECT idCommande FROM Commande WHERE dateCommande LIKE " + commande);
+			state.executeUpdate("DELETE FROM Choix_Client INNER JOIN Commande on Commande.idCommande = Choix_Client.idCommande Where idCommande = " + result);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		
+	}
+	
 	public static int getID() 
 	{
 		return ID;
@@ -95,20 +112,5 @@ public class Commande
 		return la_date;
 	}
 	
-	public void delete(DateFormat commande)
-	{
-		DataBaseManager connex = new DataBaseManager();
-		Connection bdd = connex.connectBDD(); 
-		ResultSet result;
-		Statement state;
-		try {
-			state = bdd.createStatement();
-			result = state.executeQuery("SELECT idCommande FROM Commande WHERE dateCommande LIKE " + commande);
-			state.executeUpdate("DELETE FROM Choix_Client INNER JOIN Commande on Commande.idCommande = Choix_Client.idCommande Where idCommande = " + result);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}  
-		
-	}
+
 }
