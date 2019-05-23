@@ -149,7 +149,7 @@ public class VueChoixTapas extends ScrollPane {
 	                	}
 	                	else
 	                	{
-	                		System.out.println("Stop! Va manger des tapas " + cb.getValue());
+	                		System.out.println("Stop! Va manger tes tapas " + cb.getValue());
 	                	}
 	                }
 	            }
@@ -190,11 +190,11 @@ public class VueChoixTapas extends ScrollPane {
 	    caseinfo.getChildren().add(cb);
 	    caseinfo.getChildren().add(nbTapasrestant);
 	    caseinfo.getChildren().add(boutton);
-	    
+
 		container.setLeft(caseinfo);
 		container.setCenter(casetapas);
 		this.setContent(container);
-
+		
 		
 	}
 }
