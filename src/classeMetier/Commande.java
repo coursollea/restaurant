@@ -1,6 +1,7 @@
 package classeMetier;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -95,7 +96,7 @@ public class Commande
 		return la_date;
 	}
 	
-	public void delete(DateFormat commande)
+	public static void delete(String string, int iDdude)
 	{
 		DataBaseManager connex = new DataBaseManager();
 		Connection bdd = connex.connectBDD(); 
@@ -103,8 +104,15 @@ public class Commande
 		Statement state;
 		try {
 			state = bdd.createStatement();
-			result = state.executeQuery("SELECT idCommande FROM Commande WHERE dateCommande LIKE " + commande);
-			state.executeUpdate("DELETE FROM Choix_Client INNER JOIN Commande on Commande.idCommande = Choix_Client.idCommande Where idCommande = " + result);
+			result = state.executeQuery("SELECT idCommande FROM Commande WHERE dateCommande LIKE '" + string + "'");
+			
+			ResultSetMetaData resultMeta = result.getMetaData();
+			result.next();
+			
+			int idcommande = result.getInt("idCommande");
+			
+			System.out.println(idcommande);
+			state.executeUpdate("DELETE FROM Choix_Client Where idCommande = '" + idcommande + "' AND idClient LIKE '" + iDdude + "'");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
