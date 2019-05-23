@@ -169,7 +169,7 @@ public class VueChoixTapas extends ScrollPane {
 		boutton.setOnAction(new EventHandler<ActionEvent>() 
 		{
             public void handle(ActionEvent event) {
-            	Choix_Client deleteChoixClient = new Choix_Client(Commande.getID(), current.get_idClient(), Integer.valueOf(boutton.getText()));
+            	Commande.delete(Commande.getDateCommande());
             }
 		});
                 
